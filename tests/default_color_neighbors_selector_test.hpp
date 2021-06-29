@@ -8,9 +8,9 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
 
-#include "../source/default_color_neighbor_colors_selector.hpp"
+#include "../source/default_color_neighbors_selector.hpp"
 
-class DefaultColorNeighborColorsSelectorTest : public ::testing::Test
+class DefaultColorNeighborsSelectorTest : public ::testing::Test
 {
 	protected:
 	sf::Image singlePixelImage;	// Red.
@@ -19,7 +19,7 @@ class DefaultColorNeighborColorsSelectorTest : public ::testing::Test
 	std::vector<sf::Vector2<int>> vonNeumannNeighborhood;
 	std::vector<sf::Vector2<int>> mooreNeighborhood;
 
-	DefaultColorNeighborColorsSelectorTest()
+	DefaultColorNeighborsSelectorTest()
 	{
 		singlePixelImage.create(1, 1, sf::Color::Red);
 
@@ -41,11 +41,11 @@ class DefaultColorNeighborColorsSelectorTest : public ::testing::Test
 	}
 };
 
-TEST_F(DefaultColorNeighborColorsSelectorTest, VonNeumannNeighborhoodSinglePixelTest)
+TEST_F(DefaultColorNeighborsSelectorTest, VonNeumannNeighborhoodSinglePixelTest)
 {
-	kcav::default_color_neighbor_colors_selector colorsSelector(vonNeumannNeighborhood, sf::Color::Green);
+	kcav::default_color_neighbors_selector colorsSelector(vonNeumannNeighborhood, sf::Color::Green);
 
-	std::vector<sf::Color> colors = colorsSelector.get_colors(singlePixelImage, 0, 0);
+	std::vector<sf::Color> colors = colorsSelector.get_neighbors(singlePixelImage, 0, 0);
 
 	ASSERT_EQ(colors[0], sf::Color::Green);
 	ASSERT_EQ(colors[1], sf::Color::Green);
@@ -57,11 +57,11 @@ TEST_F(DefaultColorNeighborColorsSelectorTest, VonNeumannNeighborhoodSinglePixel
 	ASSERT_EQ(colors[7], sf::Color::Green);
 }
 
-TEST_F(DefaultColorNeighborColorsSelectorTest, MooreNeighborhoodTopLeftTest)
+TEST_F(DefaultColorNeighborsSelectorTest, MooreNeighborhoodTopLeftTest)
 {
-	kcav::default_color_neighbor_colors_selector colorsSelector(mooreNeighborhood, sf::Color::White);
+	kcav::default_color_neighbors_selector colorsSelector(mooreNeighborhood, sf::Color::White);
 
-	std::vector<sf::Color> colors = colorsSelector.get_colors(rectangleImage, 0, 0);
+	std::vector<sf::Color> colors = colorsSelector.get_neighbors(rectangleImage, 0, 0);
 
 	ASSERT_EQ(colors[0], sf::Color::White);
 	ASSERT_EQ(colors[1], sf::Color::White);
@@ -73,11 +73,11 @@ TEST_F(DefaultColorNeighborColorsSelectorTest, MooreNeighborhoodTopLeftTest)
 	ASSERT_EQ(colors[7], sf::Color::White);
 }
 
-TEST_F(DefaultColorNeighborColorsSelectorTest, MooreNeighborhoodBottomRightTest)
+TEST_F(DefaultColorNeighborsSelectorTest, MooreNeighborhoodBottomRightTest)
 {
-	kcav::default_color_neighbor_colors_selector colorsSelector(mooreNeighborhood, sf::Color::White);
+	kcav::default_color_neighbors_selector colorsSelector(mooreNeighborhood, sf::Color::White);
 
-	std::vector<sf::Color> colors = colorsSelector.get_colors(rectangleImage, 2, 1);
+	std::vector<sf::Color> colors = colorsSelector.get_neighbors(rectangleImage, 2, 1);
 
 	ASSERT_EQ(colors[0], sf::Color::Blue);
 	ASSERT_EQ(colors[1], sf::Color::White);

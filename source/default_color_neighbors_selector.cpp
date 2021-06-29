@@ -2,13 +2,13 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "default_color_neighbor_colors_selector.hpp"
+#include "default_color_neighbors_selector.hpp"
 
 namespace kcav
 {
-	default_color_neighbor_colors_selector::default_color_neighbor_colors_selector(const std::vector<sf::Vector2<int>> neighborOffsets, const sf::Color defaultColor) : constant_neighbors_neighbor_colors_selector(neighborOffsets), defaultColor (defaultColor) { }
+	default_color_neighbors_selector::default_color_neighbors_selector(const std::vector<sf::Vector2<int>> neighborOffsets, const sf::Color defaultColor) : offset_neighbors_selector(neighborOffsets), defaultColor (defaultColor) { }
 
-	std::vector<sf::Color> default_color_neighbor_colors_selector::get_colors(const sf::Image &image, unsigned int x, unsigned int y) const
+	std::vector<sf::Color> default_color_neighbors_selector::get_neighbors(const sf::Image &image, unsigned int x, unsigned int y) const
 	{
 		std::vector<sf::Color> neighborColors;
 

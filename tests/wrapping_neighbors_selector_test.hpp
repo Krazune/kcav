@@ -1,5 +1,5 @@
-#ifndef WRAPPING_NEIGHBORS_NEIGHBOR_COLOR_SELECTOR_TEST_HPP
-#define WRAPPING_NEIGHBORS_NEIGHBOR_COLOR_SELECTOR_TEST_HPP
+#ifndef WRAPPING_NEIGHBORS_SELECTOR_TEST_HPP
+#define WRAPPING_NEIGHBORS_SELECTOR_TEST_HPP
 
 #include <vector>
 
@@ -8,9 +8,9 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
 
-#include "../source/wrapping_neighbors_neighbor_color_selector.hpp"
+#include "../source/wrapping_neighbors_selector.hpp"
 
-class WrappingNeighborsNeighborColorSelectorTest : public ::testing::Test
+class WrappingNeighborsSelectorTest : public ::testing::Test
 {
 	protected:
 	sf::Image singlePixelImage;	// Red.
@@ -19,7 +19,7 @@ class WrappingNeighborsNeighborColorSelectorTest : public ::testing::Test
 	std::vector<sf::Vector2<int>> vonNeumannNeighborhood;
 	std::vector<sf::Vector2<int>> mooreNeighborhood;
 
-	WrappingNeighborsNeighborColorSelectorTest()
+	WrappingNeighborsSelectorTest()
 	{
 		singlePixelImage.create(1, 1, sf::Color::Red);
 
@@ -41,11 +41,11 @@ class WrappingNeighborsNeighborColorSelectorTest : public ::testing::Test
 	}
 };
 
-TEST_F(WrappingNeighborsNeighborColorSelectorTest, VonNeumannNeighborhoodSinglePixelTest)
+TEST_F(WrappingNeighborsSelectorTest, VonNeumannNeighborhoodSinglePixelTest)
 {
-	kcav::wrapping_neighbors_neighbor_color_selector colorsSelector(vonNeumannNeighborhood);
+	kcav::wrapping_neighbors_selector colorsSelector(vonNeumannNeighborhood);
 
-	std::vector<sf::Color> colors = colorsSelector.get_colors(singlePixelImage, 0, 0);
+	std::vector<sf::Color> colors = colorsSelector.get_neighbors(singlePixelImage, 0, 0);
 
 	ASSERT_EQ(colors[0], sf::Color::Red);
 	ASSERT_EQ(colors[1], sf::Color::Red);
@@ -57,11 +57,11 @@ TEST_F(WrappingNeighborsNeighborColorSelectorTest, VonNeumannNeighborhoodSingleP
 	ASSERT_EQ(colors[7], sf::Color::Red);
 }
 
-TEST_F(WrappingNeighborsNeighborColorSelectorTest, MooreNeighborhoodTopLeftTest)
+TEST_F(WrappingNeighborsSelectorTest, MooreNeighborhoodTopLeftTest)
 {
-	kcav::wrapping_neighbors_neighbor_color_selector colorsSelector(mooreNeighborhood);
+	kcav::wrapping_neighbors_selector colorsSelector(mooreNeighborhood);
 
-	std::vector<sf::Color> colors = colorsSelector.get_colors(rectangleImage, 0, 0);
+	std::vector<sf::Color> colors = colorsSelector.get_neighbors(rectangleImage, 0, 0);
 
 	ASSERT_EQ(colors[0], sf::Color::Cyan);
 	ASSERT_EQ(colors[1], sf::Color::Magenta);
@@ -73,11 +73,11 @@ TEST_F(WrappingNeighborsNeighborColorSelectorTest, MooreNeighborhoodTopLeftTest)
 	ASSERT_EQ(colors[7], sf::Color::Yellow);
 }
 
-TEST_F(WrappingNeighborsNeighborColorSelectorTest, MooreNeighborhoodBottomRightTest)
+TEST_F(WrappingNeighborsSelectorTest, MooreNeighborhoodBottomRightTest)
 {
-	kcav::wrapping_neighbors_neighbor_color_selector colorsSelector(mooreNeighborhood);
+	kcav::wrapping_neighbors_selector colorsSelector(mooreNeighborhood);
 
-	std::vector<sf::Color> colors = colorsSelector.get_colors(rectangleImage, 2, 1);
+	std::vector<sf::Color> colors = colorsSelector.get_neighbors(rectangleImage, 2, 1);
 
 	ASSERT_EQ(colors[0], sf::Color::Blue);
 	ASSERT_EQ(colors[1], sf::Color::Red);

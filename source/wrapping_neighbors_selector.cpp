@@ -2,13 +2,13 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "wrapping_neighbors_neighbor_color_selector.hpp"
+#include "wrapping_neighbors_selector.hpp"
 
 namespace kcav
 {
-	wrapping_neighbors_neighbor_color_selector::wrapping_neighbors_neighbor_color_selector(const std::vector<sf::Vector2<int>> neighborOffsets) : constant_neighbors_neighbor_colors_selector(neighborOffsets) { }
+	wrapping_neighbors_selector::wrapping_neighbors_selector(const std::vector<sf::Vector2<int>> neighborOffsets) : offset_neighbors_selector(neighborOffsets) { }
 
-	std::vector<sf::Color> wrapping_neighbors_neighbor_color_selector::get_colors(const sf::Image &image, unsigned int x, unsigned int y) const
+	std::vector<sf::Color> wrapping_neighbors_selector::get_neighbors(const sf::Image &image, unsigned int x, unsigned int y) const
 	{
 		std::vector<sf::Color> neighborsColor;
 
