@@ -11,6 +11,9 @@ namespace kcav
 	{
 		public:
 		virtual sf::Color get_state(sf::Color selfState, std::vector<sf::Color> neighbors) = 0;
+
+		virtual	bool has_invalid_states(sf::Image image);
+		virtual sf::Image convert_invalid_states(sf::Image original);
 	};
 }
 
