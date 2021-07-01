@@ -52,6 +52,23 @@ class LifeRulesetTest : public ::testing::Test
 	});
 
 	std::vector<sf::Color> eightNeighbors = std::vector<sf::Color>(8, sf::Color::Black);
+
+	sf::Image colorfulImage; // Red Green Blue, Cyan Magenta Yellow.
+	sf::Image blackWhiteImage; // Black White, White Black.
+
+	LifeRulesetTest()
+	{
+		colorfulImage.create(3, 2, sf::Color::Red);
+		colorfulImage.setPixel(1, 0, sf::Color::Green);
+		colorfulImage.setPixel(2, 0, sf::Color::Blue);
+		colorfulImage.setPixel(0, 1, sf::Color::Cyan);
+		colorfulImage.setPixel(1, 1, sf::Color::Magenta);
+		colorfulImage.setPixel(2, 1, sf::Color::Yellow);
+
+		blackWhiteImage.create(2, 2, sf::Color::White);
+		blackWhiteImage.setPixel(0, 0, sf::Color::Black);
+		blackWhiteImage.setPixel(1, 1, sf::Color::Black);
+	}
 };
 
 TEST_F(LifeRulesetTest, WhiteStateZeroNeighborsTest)
@@ -142,6 +159,28 @@ TEST_F(LifeRulesetTest, BlackStateSevenNeighborsTest)
 TEST_F(LifeRulesetTest, BlackStateEightNeighborsTest)
 {
 	ASSERT_EQ(lifeRuleset.get_state(sf::Color::Black, eightNeighbors), sf::Color::White);
+}
+
+TEST_F(LifeRulesetTest, ColorfulImageInvalidStatesTest)
+{
+	ASSERT_TRUE(lifeRuleset.has_invalid_states(colorfulImage));
+}
+
+TEST_F(LifeRulesetTest, BlackWhiteImageInvalidStatesTest)
+{
+	ASSERT_FALSE(lifeRuleset.has_invalid_states(blackWhiteImage));
+}
+
+TEST_F(LifeRulesetTest, ColorfulImageConversionTest)
+{
+	sf::Image convertedImage = lifeRuleset.convert_invalid_states(colorfulImage);
+
+	ASSERT_EQ(convertedImage.getPixel(0, 0), sf::Color::Black);
+	ASSERT_EQ(convertedImage.getPixel(1, 0), sf::Color::White);
+	ASSERT_EQ(convertedImage.getPixel(2, 0), sf::Color::Black);
+	ASSERT_EQ(convertedImage.getPixel(0, 1), sf::Color::White);
+	ASSERT_EQ(convertedImage.getPixel(1, 1), sf::Color::Black);
+	ASSERT_EQ(convertedImage.getPixel(2, 1), sf::Color::White);
 }
 
 #endif
