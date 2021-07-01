@@ -6,7 +6,7 @@ namespace kcav
 	{
 		int neighborCount = 0;
 
-		for (int i = 0; i < neighbors.size(); ++i)
+		for (int i = 0; i < 8; ++i)
 		{
 			if (neighbors[i] == sf::Color::Black)
 			{
