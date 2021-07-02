@@ -5,11 +5,11 @@
 
 #include <SFML/Graphics.hpp>
 
+#include "ruleset.hpp"
+#include "neighbors_selector.hpp"
+
 namespace kcav
 {
-	class ruleset;
-	class neighbors_selector;
-
 	class cellular_automaton
 	{
 		std::unique_ptr<ruleset> automatonRuleset;
