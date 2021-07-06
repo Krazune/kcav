@@ -19,7 +19,7 @@
 
 namespace kcav
 {
-	kcav::kcav() : options("Options")
+	kcav::kcav() : options("Options"), hiddenOptions("Hidden Options"), visibleOptions("Options")
 	{
 		setup_options();
 	}
@@ -150,35 +150,27 @@ namespace kcav
 
 	void kcav::setup_options()
 	{
-		boost::program_options::options_description hiddenOptions = create_hidden_options();
-		boost::program_options::options_description visibleOptions = create_visible_options();
+		setup_hidden_options();
+		setup_visible_options();
 
 		options.add(visibleOptions).add(hiddenOptions);
 
 		positionalOptions = create_positional_options();
 	}
 
-	boost::program_options::options_description kcav::create_hidden_options() const
+	void kcav::setup_hidden_options()
 	{
-		boost::program_options::options_description hiddenOptions("Hidden options");
-
 		hiddenOptions.add_options()
 			("help", "print help information")
 			("version", "print version information")
 			("ruleset", boost::program_options::value<std::string>()->required(), "cellular automaton ruleset identifier")
 			("image-path", boost::program_options::value<std::string>()->required(), "input image path");
-
-		return hiddenOptions;
 	}
 
-	boost::program_options::options_description kcav::create_visible_options() const
+	void kcav::setup_visible_options()
 	{
-		boost::program_options::options_description visibleOptions("Options");
-
 		visibleOptions.add_options()
 			("time,t", boost::program_options::value<int>()->default_value(100), "amount of miliseconds between each generation");
-
-		return visibleOptions;
 	}
 
 	boost::program_options::positional_options_description kcav::create_positional_options() const
@@ -245,7 +237,7 @@ namespace kcav
 		std::cout << "  kcav --version\n";
 		std::cout << "  kcav <cellular automaton identifier> <input file> [options]\n\n";
 
-		std::cout << options << "\n";
+		std::cout << visibleOptions << "\n";
 	}
 
 	void kcav::print_version_message() const
