@@ -26,13 +26,9 @@ namespace kcav
 
 	int kcav::run(int argc, char* argv[])
 	{
-		boost::program_options::variables_map optionsMap;
-
 		try
 		{
-			boost::program_options::parsed_options parsedOptions = boost::program_options::command_line_parser(argc, argv).options(options).positional(positionalOptions).run();
-
-			boost::program_options::store(parsedOptions, optionsMap);
+			store_options(argc, argv);
 		}
 		catch (...)
 		{
@@ -193,5 +189,12 @@ namespace kcav
 		positionalOptions.add("ruleset", 1).add("image-path", 1);
 
 		return positionalOptions;
+	}
+
+	void kcav::store_options(int argc, char* argv[])
+	{
+		boost::program_options::parsed_options parsedOptions = boost::program_options::command_line_parser(argc, argv).options(options).positional(positionalOptions).run();
+
+		boost::program_options::store(parsedOptions, optionsMap);
 	}
 }
