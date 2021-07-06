@@ -3,6 +3,8 @@
 
 #include <boost/program_options.hpp>
 
+#include <SFML/Graphics.hpp>
+
 namespace kcav
 {
 	class kcav
@@ -14,6 +16,8 @@ namespace kcav
 		boost::program_options::positional_options_description positionalOptions;
 
 		boost::program_options::variables_map optionsMap;
+
+		sf::Image generation;
 
 		public:
 		kcav();
@@ -27,6 +31,8 @@ namespace kcav
 		void setup_positional_options();
 
 		void store_options(int argc, char* argv[]);
+
+		bool loadImageFile();
 
 		void handle_program_options_exceptions() const;
 		void print_help_message() const;

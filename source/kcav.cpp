@@ -56,12 +56,9 @@ namespace kcav
 		}
 
 		std::string rulesetIdentifier = optionsMap["ruleset"].as<std::string>();
-		std::string imagePath = optionsMap["image-path"].as<std::string>();
 		int millisecondsPerGeneration = optionsMap["time"].as<int>();
 
-		sf::Image inputImage;
-
-		if (!inputImage.loadFromFile(imagePath))
+		if (!loadImageFile())
 		{
 			print_file_load_error_message();
 
@@ -92,13 +89,13 @@ namespace kcav
 			return EXIT_FAILURE;
 		}
 
-		inputImage = ruleset->convert_invalid_states(inputImage);
+		generation = ruleset->convert_invalid_states(generation);
 
 		auto cellularAutomaton = std::make_unique<cellular_automaton>(std::move(ruleset), std::move(neighborsSelector));
 
-		cellular_automata_engine engine(std::move(cellularAutomaton), inputImage);
+		cellular_automata_engine engine(std::move(cellularAutomaton), generation);
 
-		sf::RenderWindow window(sf::VideoMode(inputImage.getSize().x, inputImage.getSize().y), "KCAV");
+		sf::RenderWindow window(sf::VideoMode(generation.getSize().x, generation.getSize().y), "KCAV");
 
 		sf::Time timer = sf::milliseconds(millisecondsPerGeneration);
 		sf::Clock generationClock;
@@ -120,10 +117,10 @@ namespace kcav
 
 			sf::Texture myTexture;
 
-			myTexture.create(inputImage.getSize().x, inputImage.getSize().y);
-			myTexture.update(inputImage);
+			myTexture.create(generation.getSize().x, generation.getSize().y);
+			myTexture.update(generation);
 
-			inputImage = engine.get_generation();
+			generation = engine.get_generation();
 
 			sf::Sprite mySprite;
 
@@ -178,6 +175,13 @@ namespace kcav
 		boost::program_options::parsed_options parsedOptions = boost::program_options::command_line_parser(argc, argv).options(options).positional(positionalOptions).run();
 
 		boost::program_options::store(parsedOptions, optionsMap);
+	}
+
+	bool kcav::loadImageFile()
+	{
+		std::string imagePath = optionsMap["image-path"].as<std::string>();
+
+		return generation.loadFromFile(imagePath);
 	}
 
 	void kcav::handle_program_options_exceptions() const
