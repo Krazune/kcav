@@ -29,32 +29,22 @@ namespace kcav
 		try
 		{
 			store_options(argc, argv);
-		}
-		catch (...)
-		{
-			handle_program_options_exceptions();
 
-			return EXIT_FAILURE;
-		}
+			if (optionsMap.count("help") > 0)
+			{
+				print_help_message();
 
-		if (optionsMap.count("help") > 0)
-		{
-			print_help_message();
+				return EXIT_SUCCESS;
+			}
 
-			return EXIT_SUCCESS;
-		}
+			if (optionsMap.count("version") > 0)
+			{
+				print_version_message();
 
-		if (optionsMap.count("version") > 0)
-		{
-			print_version_message();
+				return EXIT_SUCCESS;
+			}
 
-			return EXIT_SUCCESS;
-		}
-
-		try
-		{
 			boost::program_options::notify(optionsMap);
-
 		}
 		catch (...)
 		{
