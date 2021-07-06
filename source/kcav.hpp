@@ -20,6 +20,7 @@ namespace kcav
 		void setup_options();
 		boost::program_options::options_description create_hidden_options();
 		boost::program_options::options_description create_visible_options();
+		boost::program_options::positional_options_description create_positional_options();
 	};
 }
 

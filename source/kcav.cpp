@@ -159,6 +159,8 @@ namespace kcav
 		boost::program_options::options_description visibleOptions = create_visible_options();
 
 		options.add(visibleOptions).add(hiddenOptions);
+
+		positionalOptions = create_positional_options();
 	}
 
 	boost::program_options::options_description kcav::create_hidden_options()
@@ -171,8 +173,6 @@ namespace kcav
 			("ruleset", boost::program_options::value<std::string>()->required(), "cellular automaton ruleset identifier")
 			("image-path", boost::program_options::value<std::string>()->required(), "input image path");
 
-		positionalOptions.add("ruleset", 1).add("image-path", 1);
-
 		return hiddenOptions;
 	}
 
@@ -184,5 +184,14 @@ namespace kcav
 			("time,t", boost::program_options::value<int>()->default_value(100), "amount of miliseconds between each generation");
 
 		return visibleOptions;
+	}
+
+	boost::program_options::positional_options_description kcav::create_positional_options()
+	{
+		boost::program_options::positional_options_description positionalOptions;
+
+		positionalOptions.add("ruleset", 1).add("image-path", 1);
+
+		return positionalOptions;
 	}
 }
