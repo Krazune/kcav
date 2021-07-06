@@ -25,6 +25,8 @@ namespace kcav
 		boost::program_options::positional_options_description create_positional_options() const;
 
 		void store_options(int argc, char* argv[]);
+
+		void handle_program_options_exceptions() const;
 	};
 }
 

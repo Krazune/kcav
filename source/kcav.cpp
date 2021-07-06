@@ -32,8 +32,7 @@ namespace kcav
 		}
 		catch (...)
 		{
-			// Handle exceptions.
-			std::cout << "options parsing error 1\n";
+			handle_program_options_exceptions();
 
 			return EXIT_FAILURE;
 		}
@@ -56,10 +55,10 @@ namespace kcav
 		{
 			boost::program_options::notify(optionsMap);
 
-		} catch (...)
+		}
+		catch (...)
 		{
-			// Handle exceptions.
-			std::cout << "options parsing error 2\n";
+			handle_program_options_exceptions();
 
 			return EXIT_FAILURE;
 		}
@@ -196,5 +195,45 @@ namespace kcav
 		boost::program_options::parsed_options parsedOptions = boost::program_options::command_line_parser(argc, argv).options(options).positional(positionalOptions).run();
 
 		boost::program_options::store(parsedOptions, optionsMap);
+	}
+
+	void kcav::handle_program_options_exceptions() const
+	{
+		try
+		{
+			throw;
+		}
+		catch (boost::program_options::ambiguous_option&)
+		{
+			std::cerr << "Error: ambiguous option.\n";
+		}
+		catch (boost::program_options::unknown_option&)
+		{
+			std::cerr << "Error: unknown option.\n";
+		}
+		catch (boost::program_options::invalid_command_line_syntax&)
+		{
+			std::cerr << "Error: invalid command line syntax.\n";
+		}
+		catch (boost::program_options::multiple_occurrences& error)
+		{
+			std::cerr << "Error: multiple occurrences of the option " << error.get_option_name() << " are not allowed.\n";
+		}
+		catch (boost::program_options::multiple_values& error)
+		{
+			std::cerr << "Error: multiple values given to the option " << error.get_option_name() << " are not allowed.\n";
+		}
+		catch (boost::program_options::required_option& error)
+		{
+			std::cerr << "Error: missing required option " << error.get_option_name() << ".\n";
+		}
+		catch (boost::program_options::validation_error& error)
+		{
+			std::cerr << "Error: invalid value given to the option " << error.get_option_name() << ".\n";
+		}
+		catch (...)
+		{
+			std::cerr << "Error: exception caught while processing the program options.\n";
+		}
 	}
 }
