@@ -19,29 +19,13 @@
 
 namespace kcav
 {
+	kcav::kcav() : options("Options")
+	{
+		setup_options();
+	}
+
 	int kcav::run(int argc, char* argv[])
 	{
-		boost::program_options::options_description hiddenOptions("Hidden options");
-
-		hiddenOptions.add_options()
-			("help", "print help information")
-			("version", "print version information")
-			("ruleset", boost::program_options::value<std::string>()->required(), "cellular automaton ruleset identifier")
-			("image-path", boost::program_options::value<std::string>()->required(), "input image path");
-
-		boost::program_options::positional_options_description positionalOptions;
-
-		positionalOptions.add("ruleset", 1).add("image-path", 1);
-
-		boost::program_options::options_description visibleOptions("Options");
-
-		visibleOptions.add_options()
-			("time,t", boost::program_options::value<int>()->default_value(100), "amount of miliseconds between each generation");
-
-		boost::program_options::options_description options("Options");
-
-		options.add(visibleOptions).add(hiddenOptions);
-
 		boost::program_options::variables_map optionsMap;
 
 		try
@@ -167,5 +151,38 @@ namespace kcav
 		}
 
 		return EXIT_SUCCESS;
+	}
+
+	void kcav::setup_options()
+	{
+		boost::program_options::options_description hiddenOptions = create_hidden_options();
+		boost::program_options::options_description visibleOptions = create_visible_options();
+
+		options.add(visibleOptions).add(hiddenOptions);
+	}
+
+	boost::program_options::options_description kcav::create_hidden_options()
+	{
+		boost::program_options::options_description hiddenOptions("Hidden options");
+
+		hiddenOptions.add_options()
+			("help", "print help information")
+			("version", "print version information")
+			("ruleset", boost::program_options::value<std::string>()->required(), "cellular automaton ruleset identifier")
+			("image-path", boost::program_options::value<std::string>()->required(), "input image path");
+
+		positionalOptions.add("ruleset", 1).add("image-path", 1);
+
+		return hiddenOptions;
+	}
+
+	boost::program_options::options_description kcav::create_visible_options()
+	{
+		boost::program_options::options_description visibleOptions("Options");
+
+		visibleOptions.add_options()
+			("time,t", boost::program_options::value<int>()->default_value(100), "amount of miliseconds between each generation");
+
+		return visibleOptions;
 	}
 }
