@@ -46,7 +46,7 @@ namespace kcav
 
 		if (optionsMap.count("version") > 0)
 		{
-			std::cout << "version information\n";
+			print_version_message();
 
 			return EXIT_SUCCESS;
 		}
@@ -246,5 +246,10 @@ namespace kcav
 		std::cout << "  kcav <cellular automaton identifier> <input file> [options]\n\n";
 
 		std::cout << options << "\n";
+	}
+
+	void kcav::print_version_message() const
+	{
+		std::cout << "KCAV\nVersion: 0.0.0\n";
 	}
 }
