@@ -152,10 +152,9 @@ namespace kcav
 	{
 		setup_hidden_options();
 		setup_visible_options();
+		setup_positional_options();
 
 		options.add(visibleOptions).add(hiddenOptions);
-
-		positionalOptions = create_positional_options();
 	}
 
 	void kcav::setup_hidden_options()
@@ -173,13 +172,9 @@ namespace kcav
 			("time,t", boost::program_options::value<int>()->default_value(100), "amount of miliseconds between each generation");
 	}
 
-	boost::program_options::positional_options_description kcav::create_positional_options() const
+	void kcav::setup_positional_options()
 	{
-		boost::program_options::positional_options_description positionalOptions;
-
 		positionalOptions.add("ruleset", 1).add("image-path", 1);
-
-		return positionalOptions;
 	}
 
 	void kcav::store_options(int argc, char* argv[])

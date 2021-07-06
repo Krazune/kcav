@@ -9,9 +9,9 @@ namespace kcav
 	{
 		private:
 		boost::program_options::options_description options;
-		boost::program_options::positional_options_description positionalOptions;
 		boost::program_options::options_description hiddenOptions;
 		boost::program_options::options_description visibleOptions;
+		boost::program_options::positional_options_description positionalOptions;
 
 		boost::program_options::variables_map optionsMap;
 
@@ -24,7 +24,7 @@ namespace kcav
 		void setup_options();
 		void setup_hidden_options();
 		void setup_visible_options();
-		boost::program_options::positional_options_description create_positional_options() const;
+		void setup_positional_options();
 
 		void store_options(int argc, char* argv[]);
 
