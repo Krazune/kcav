@@ -163,7 +163,7 @@ namespace kcav
 		positionalOptions = create_positional_options();
 	}
 
-	boost::program_options::options_description kcav::create_hidden_options()
+	boost::program_options::options_description kcav::create_hidden_options() const
 	{
 		boost::program_options::options_description hiddenOptions("Hidden options");
 
@@ -176,7 +176,7 @@ namespace kcav
 		return hiddenOptions;
 	}
 
-	boost::program_options::options_description kcav::create_visible_options()
+	boost::program_options::options_description kcav::create_visible_options() const
 	{
 		boost::program_options::options_description visibleOptions("Options");
 
@@ -186,7 +186,7 @@ namespace kcav
 		return visibleOptions;
 	}
 
-	boost::program_options::positional_options_description kcav::create_positional_options()
+	boost::program_options::positional_options_description kcav::create_positional_options() const
 	{
 		boost::program_options::positional_options_description positionalOptions;
 
