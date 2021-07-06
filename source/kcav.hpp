@@ -27,6 +27,7 @@ namespace kcav
 		void store_options(int argc, char* argv[]);
 
 		void handle_program_options_exceptions() const;
+		void print_usage_message() const;
 	};
 }
 

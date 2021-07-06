@@ -39,7 +39,7 @@ namespace kcav
 
 		if (optionsMap.count("help") > 0)
 		{
-			std::cout << "usage information\n";
+			print_help_message();
 
 			return EXIT_SUCCESS;
 		}
@@ -235,5 +235,16 @@ namespace kcav
 		{
 			std::cerr << "Error: exception caught while processing the program options.\n";
 		}
+	}
+
+	void kcav::print_help_message() const
+	{
+		std::cout << "KCAV\n";
+		std::cout << "Usage:\n";
+		std::cout << "  kcav --help\n";
+		std::cout << "  kcav --version\n";
+		std::cout << "  kcav <cellular automaton identifier> <input file> [options]\n\n";
+
+		std::cout << options << "\n";
 	}
 }
