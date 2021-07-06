@@ -26,6 +26,8 @@ namespace kcav
 
 	int kcav::run(int argc, char* argv[])
 	{
+		sf::err().rdbuf(NULL);
+
 		try
 		{
 			store_options(argc, argv);
@@ -59,8 +61,12 @@ namespace kcav
 
 		sf::Image inputImage;
 
-		// Handle file load error.
-		inputImage.loadFromFile(imagePath);
+		if (!inputImage.loadFromFile(imagePath))
+		{
+			print_file_load_error_message();
+
+			return EXIT_FAILURE;
+		}
 
 		std::unique_ptr<ruleset> ruleset;
 		std::unique_ptr<neighbors_selector> neighborsSelector;
@@ -228,5 +234,10 @@ namespace kcav
 	void kcav::print_version_message() const
 	{
 		std::cout << "KCAV\nVersion: 0.0.0\n";
+	}
+
+	void kcav::print_file_load_error_message() const
+	{
+		std::cerr << "Error: invalid file path.\n";
 	}
 }

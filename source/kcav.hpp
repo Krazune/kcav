@@ -31,6 +31,7 @@ namespace kcav
 		void handle_program_options_exceptions() const;
 		void print_help_message() const;
 		void print_version_message() const;
+		void print_file_load_error_message() const;
 	};
 }
 
