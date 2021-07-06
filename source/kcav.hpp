@@ -1,15 +1,21 @@
 #ifndef KCAV_HPP
 #define KCAV_HPP
 
+#include <vector>
+
 #include <boost/program_options.hpp>
 
 #include <SFML/Graphics.hpp>
+#include <SFML/System.hpp>
 
 namespace kcav
 {
 	class kcav
 	{
 		private:
+		static std::vector<sf::Vector2<int>> mooreNeighbors;
+		static std::vector<sf::Vector2<int>> vonNeumannNeighbors;
+
 		boost::program_options::options_description options;
 		boost::program_options::options_description hiddenOptions;
 		boost::program_options::options_description visibleOptions;

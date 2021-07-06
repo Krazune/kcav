@@ -19,6 +19,17 @@
 
 namespace kcav
 {
+	std::vector<sf::Vector2<int>> kcav::mooreNeighbors(
+		{
+			{0, -1}, {1, -1}, {1, 0}, {1, 1}, {0, 1}, {-1, 1}, {-1, 0}, {-1, -1}
+		});
+
+	std::vector<sf::Vector2<int>> kcav::vonNeumannNeighbors(
+		{
+			{0, -1}, {1, 0}, {0, 1}, {-1, 0},
+			{0, -2}, {2, 0}, {0, 2}, {-2, 0}
+		});
+
 	kcav::kcav() : options("Options"), hiddenOptions("Hidden Options"), visibleOptions("Options")
 	{
 		setup_options();
@@ -71,9 +82,7 @@ namespace kcav
 		if (rulesetIdentifier == "life")
 		{
 			ruleset = std::make_unique<life_ruleset>();
-			neighborsSelector = std::make_unique<wrapping_neighbors_selector>(std::vector<sf::Vector2<int>>({
-																											   {0, -1}, {1, -1}, {1, 0}, {1, 1}, {0, 1}, {-1, 1}, {-1, 0}, {-1, -1}
-																											}));
+			neighborsSelector = std::make_unique<wrapping_neighbors_selector>(mooreNeighbors);
 		}
 		else
 		{
