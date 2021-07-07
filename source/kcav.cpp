@@ -7,6 +7,7 @@
 
 #include <SFML/Graphics.hpp>
 
+#include "brians_brain_ruleset.hpp"
 #include "cellular_automata_engine.hpp"
 #include "cellular_automaton.hpp"
 #include "kcav.hpp"
@@ -129,6 +130,11 @@ namespace kcav
 		else if (rulesetIdentifier == "seeds")
 		{
 			ruleset = std::make_unique<seeds_ruleset>();
+			neighborsSelector = std::make_unique<wrapping_neighbors_selector>(mooreNeighbors);
+		}
+		else if (rulesetIdentifier == "brians-brain")
+		{
+			ruleset = std::make_unique<brians_brain_ruleset>();
 			neighborsSelector = std::make_unique<wrapping_neighbors_selector>(mooreNeighbors);
 		}
 		else
