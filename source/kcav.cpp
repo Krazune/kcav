@@ -77,52 +77,7 @@ namespace kcav
 			return EXIT_FAILURE;
 		}
 
-		cellular_automata_engine engine(std::move(cellularAutomaton), generation);
-
-		sf::RenderWindow window(sf::VideoMode(generation.getSize().x, generation.getSize().y), "KCAV");
-
-		sf::Time timer = sf::milliseconds(millisecondsPerGeneration);
-		sf::Clock generationClock;
-		sf::Time previousGenerationTime;
-
-		while (window.isOpen())
-		{
-			sf::Event event;
-
-			while (window.pollEvent(event))
-			{
-				if (event.type == sf::Event::Closed)
-				{
-					window.close();
-
-					return EXIT_SUCCESS;
-				}
-			}
-
-			window.clear(sf::Color::Black);
-
-			sf::Texture myTexture;
-
-			myTexture.create(generation.getSize().x, generation.getSize().y);
-			myTexture.update(generation);
-
-			generation = engine.get_generation();
-
-			sf::Sprite mySprite;
-
-			mySprite.setTexture(myTexture);
-
-			window.draw(mySprite);
-
-			if (generationClock.getElapsedTime() - previousGenerationTime >= timer)
-			{
-				engine.update_generation();
-				previousGenerationTime = generationClock.getElapsedTime();
-
-			}
-
-			window.display();
-		}
+		run_engine_loop();
 
 		return EXIT_SUCCESS;
 	}
@@ -254,6 +209,54 @@ namespace kcav
 		std::string imagePath = optionsMap["image-path"].as<std::string>();
 
 		return generation.loadFromFile(imagePath);
+	}
+
+	void kcav::run_engine_loop()
+	{
+		cellular_automata_engine engine(std::move(cellularAutomaton), generation);
+		sf::RenderWindow window(sf::VideoMode(generation.getSize().x, generation.getSize().y), "KCAV");
+		sf::Time timer = sf::milliseconds(millisecondsPerGeneration);
+		sf::Clock generationClock;
+		sf::Time previousGenerationTime;
+
+		while (window.isOpen())
+		{
+			sf::Event event;
+
+			while (window.pollEvent(event))
+			{
+				if (event.type == sf::Event::Closed)
+				{
+					window.close();
+
+					return;
+				}
+			}
+
+			window.clear(sf::Color::Black);
+
+			sf::Texture myTexture;
+
+			myTexture.create(generation.getSize().x, generation.getSize().y);
+			myTexture.update(generation);
+
+			generation = engine.get_generation();
+
+			sf::Sprite mySprite;
+
+			mySprite.setTexture(myTexture);
+
+			window.draw(mySprite);
+
+			if (generationClock.getElapsedTime() - previousGenerationTime >= timer)
+			{
+				engine.update_generation();
+				previousGenerationTime = generationClock.getElapsedTime();
+
+			}
+
+			window.display();
+		}
 	}
 
 	void kcav::handle_program_options_exceptions() const
