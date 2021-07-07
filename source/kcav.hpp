@@ -1,12 +1,15 @@
 #ifndef KCAV_HPP
 #define KCAV_HPP
 
+#include <memory>
 #include <vector>
 
 #include <boost/program_options.hpp>
 
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
+
+#include "cellular_automaton.hpp"
 
 namespace kcav
 {
@@ -25,6 +28,8 @@ namespace kcav
 
 		sf::Image generation;
 
+		std::unique_ptr<cellular_automaton> cellularAutomaton;
+
 		public:
 		kcav();
 
@@ -38,6 +43,8 @@ namespace kcav
 
 		void store_options(int argc, char* argv[]);
 
+		bool setup_cellular_automaton();
+
 		bool process_option_storage(int argc, char* argv[]);
 		bool process_secondary_usages() const;
 		bool process_options_notification();
@@ -48,6 +55,7 @@ namespace kcav
 		void print_help_message() const;
 		void print_version_message() const;
 		void print_file_load_error_message() const;
+		void print_invalid_identifier_error_message() const;
 	};
 }
 

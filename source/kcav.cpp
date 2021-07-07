@@ -56,19 +56,9 @@ namespace kcav
 			return EXIT_FAILURE;
 		}
 
-		std::string rulesetIdentifier = optionsMap["ruleset"].as<std::string>();
-
-		std::unique_ptr<ruleset> ruleset;
-		std::unique_ptr<neighbors_selector> neighborsSelector;
-
-		if (rulesetIdentifier == "life")
+		if (!setup_cellular_automaton())
 		{
-			ruleset = std::make_unique<life_ruleset>();
-			neighborsSelector = std::make_unique<wrapping_neighbors_selector>(mooreNeighbors);
-		}
-		else
-		{
-			std::cout << "unknown ruleset\n";
+			print_invalid_identifier_error_message();
 
 			return EXIT_FAILURE;
 		}
@@ -88,8 +78,6 @@ namespace kcav
 
 			return EXIT_FAILURE;
 		}
-
-		auto cellularAutomaton = std::make_unique<cellular_automaton>(std::move(ruleset), std::move(neighborsSelector));
 
 		cellular_automata_engine engine(std::move(cellularAutomaton), generation);
 
@@ -175,6 +163,27 @@ namespace kcav
 		boost::program_options::parsed_options parsedOptions = boost::program_options::command_line_parser(argc, argv).options(options).positional(positionalOptions).run();
 
 		boost::program_options::store(parsedOptions, optionsMap);
+	}
+
+	bool kcav::setup_cellular_automaton()
+	{
+		std::string rulesetIdentifier = optionsMap["ruleset"].as<std::string>();
+		std::unique_ptr<ruleset> ruleset;
+		std::unique_ptr<neighbors_selector> neighborsSelector;
+
+		if (rulesetIdentifier == "life")
+		{
+			ruleset = std::make_unique<life_ruleset>();
+			neighborsSelector = std::make_unique<wrapping_neighbors_selector>(mooreNeighbors);
+		}
+		else
+		{
+			return false;
+		}
+
+		cellularAutomaton = std::make_unique<cellular_automaton>(std::move(ruleset), std::move(neighborsSelector));
+
+		return true;
 	}
 
 	bool kcav::process_option_storage(int argc, char* argv[])
@@ -294,5 +303,10 @@ namespace kcav
 	void kcav::print_file_load_error_message() const
 	{
 		std::cerr << "Error: invalid file path.\n";
+	}
+
+	void kcav::print_invalid_identifier_error_message() const
+	{
+		std::cerr << "Error: invalid cellular automata identifier.\n";
 	}
 }
