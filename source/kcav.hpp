@@ -38,7 +38,7 @@ namespace kcav
 
 		void store_options(int argc, char* argv[]);
 
-		bool loadImageFile();
+		bool load_image_file();
 
 		void handle_program_options_exceptions() const;
 		void print_help_message() const;

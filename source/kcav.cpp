@@ -69,7 +69,7 @@ namespace kcav
 		std::string rulesetIdentifier = optionsMap["ruleset"].as<std::string>();
 		int millisecondsPerGeneration = optionsMap["time"].as<int>();
 
-		if (!loadImageFile())
+		if (!load_image_file())
 		{
 			print_file_load_error_message();
 
@@ -188,7 +188,7 @@ namespace kcav
 		boost::program_options::store(parsedOptions, optionsMap);
 	}
 
-	bool kcav::loadImageFile()
+	bool kcav::load_image_file()
 	{
 		std::string imagePath = optionsMap["image-path"].as<std::string>();
 
