@@ -43,12 +43,22 @@ namespace kcav
 		try
 		{
 			store_options(argc, argv);
+		}
+		catch (...)
+		{
+			handle_program_options_exceptions();
 
-			if (process_secondary_usages())
-			{
-				return EXIT_SUCCESS;
-			}
+			return EXIT_FAILURE;
+		}
 
+		// Process the secondary usages before trying to convert the arguments into the respective types.
+		if (process_secondary_usages())
+		{
+			return EXIT_SUCCESS;
+		}
+
+		try
+		{
 			boost::program_options::notify(optionsMap);
 		}
 		catch (...)
