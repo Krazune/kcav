@@ -44,17 +44,8 @@ namespace kcav
 		{
 			store_options(argc, argv);
 
-			if (optionsMap.count("help") > 0)
+			if (process_secondary_usages())
 			{
-				print_help_message();
-
-				return EXIT_SUCCESS;
-			}
-
-			if (optionsMap.count("version") > 0)
-			{
-				print_version_message();
-
 				return EXIT_SUCCESS;
 			}
 
@@ -187,6 +178,25 @@ namespace kcav
 		boost::program_options::parsed_options parsedOptions = boost::program_options::command_line_parser(argc, argv).options(options).positional(positionalOptions).run();
 
 		boost::program_options::store(parsedOptions, optionsMap);
+	}
+
+	bool kcav::process_secondary_usages() const
+	{
+		if (optionsMap.count("help") > 0)
+		{
+			print_help_message();
+
+			return true;
+		}
+
+		if (optionsMap.count("version") > 0)
+		{
+			print_version_message();
+
+			return true;
+		}
+
+		return false;
 	}
 
 	bool kcav::load_image_file()

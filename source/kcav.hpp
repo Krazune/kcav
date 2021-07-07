@@ -38,6 +38,8 @@ namespace kcav
 
 		void store_options(int argc, char* argv[]);
 
+		bool process_secondary_usages() const;
+
 		bool load_image_file();
 
 		void handle_program_options_exceptions() const;
