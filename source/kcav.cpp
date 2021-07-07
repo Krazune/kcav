@@ -216,6 +216,9 @@ namespace kcav
 	void kcav::run_engine_loop()
 	{
 		cellular_automata_engine engine(std::move(cellularAutomaton), generation);
+
+		generation = engine.get_generation();
+
 		sf::RenderWindow window(sf::VideoMode(generation.getSize().x, generation.getSize().y), "KCAV");
 		sf::Time timer = sf::milliseconds(millisecondsPerGeneration);
 		sf::Clock generationClock;
@@ -235,7 +238,7 @@ namespace kcav
 				}
 			}
 
-			window.clear(sf::Color::Black);
+			window.clear(sf::Color::White);
 
 			sf::Texture myTexture;
 
