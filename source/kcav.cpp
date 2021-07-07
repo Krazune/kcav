@@ -92,8 +92,6 @@ namespace kcav
 			return EXIT_FAILURE;
 		}
 
-		generation = ruleset->convert_invalid_states(generation);
-
 		int millisecondsPerGeneration = optionsMap["time"].as<int>();
 
 		if (millisecondsPerGeneration < 0)

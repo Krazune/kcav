@@ -34,4 +34,9 @@ namespace kcav
 
 		return nextGeneration;
 	}
+
+	sf::Image cellular_automaton::convert_invalid_states(const sf::Image& original)
+	{
+		return automatonRuleset->convert_invalid_states(original);
+	}
 }
