@@ -248,7 +248,6 @@ namespace kcav
 			{
 				engine.update_generation();
 				previousGenerationTime = generationClock.getElapsedTime();
-
 			}
 
 			window.display();
