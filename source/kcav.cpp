@@ -10,6 +10,7 @@
 #include "cellular_automata_engine.hpp"
 #include "kcav.hpp"
 #include "life_ruleset.hpp"
+#include "sfml_err_redirector.hpp"
 
 // TEMPORARY
 
@@ -37,7 +38,7 @@ namespace kcav
 
 	int kcav::run(int argc, char* argv[])
 	{
-		sf::err().rdbuf(NULL);
+		sfml_err_redirector errDisabler(NULL);
 
 		try
 		{
