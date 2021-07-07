@@ -8,15 +8,11 @@
 #include <SFML/Graphics.hpp>
 
 #include "cellular_automata_engine.hpp"
+#include "cellular_automaton.hpp"
 #include "kcav.hpp"
 #include "life_ruleset.hpp"
 #include "sfml_err_redirector.hpp"
-
-// TEMPORARY
-
 #include "wrapping_neighbors_selector.hpp"
-#include "cellular_automaton.hpp"
-// TEMPORARY END
 
 namespace kcav
 {
