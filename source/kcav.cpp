@@ -40,14 +40,8 @@ namespace kcav
 	{
 		sfml_err_redirector errDisabler(NULL);
 
-		try
+		if (!process_option_storage(argc, argv))
 		{
-			store_options(argc, argv);
-		}
-		catch (...)
-		{
-			handle_program_options_exceptions();
-
 			return EXIT_FAILURE;
 		}
 
@@ -57,14 +51,8 @@ namespace kcav
 			return EXIT_SUCCESS;
 		}
 
-		try
+		if (!process_options_notification())
 		{
-			boost::program_options::notify(optionsMap);
-		}
-		catch (...)
-		{
-			handle_program_options_exceptions();
-
 			return EXIT_FAILURE;
 		}
 
@@ -189,6 +177,22 @@ namespace kcav
 		boost::program_options::store(parsedOptions, optionsMap);
 	}
 
+	bool kcav::process_option_storage(int argc, char* argv[])
+	{
+		try
+		{
+			store_options(argc, argv);
+		}
+		catch (...)
+		{
+			handle_program_options_exceptions();
+
+			return false;
+		}
+
+		return true;
+	}
+
 	bool kcav::process_secondary_usages() const
 	{
 		if (optionsMap.count("help") > 0)
@@ -206,6 +210,22 @@ namespace kcav
 		}
 
 		return false;
+	}
+
+	bool kcav::process_options_notification()
+	{
+		try
+		{
+			boost::program_options::notify(optionsMap);
+		}
+		catch (...)
+		{
+			handle_program_options_exceptions();
+
+			return false;
+		}
+
+		return true;
 	}
 
 	bool kcav::load_image_file()

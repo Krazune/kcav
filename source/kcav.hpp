@@ -38,7 +38,9 @@ namespace kcav
 
 		void store_options(int argc, char* argv[]);
 
+		bool process_option_storage(int argc, char* argv[]);
 		bool process_secondary_usages() const;
+		bool process_options_notification();
 
 		bool load_image_file();
 
