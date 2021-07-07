@@ -11,6 +11,7 @@
 #include "cellular_automaton.hpp"
 #include "kcav.hpp"
 #include "life_ruleset.hpp"
+#include "seeds_ruleset.hpp"
 #include "sfml_err_redirector.hpp"
 #include "wrapping_neighbors_selector.hpp"
 
@@ -123,6 +124,11 @@ namespace kcav
 		if (rulesetIdentifier == "life")
 		{
 			ruleset = std::make_unique<life_ruleset>();
+			neighborsSelector = std::make_unique<wrapping_neighbors_selector>(mooreNeighbors);
+		}
+		else if (rulesetIdentifier == "seeds")
+		{
+			ruleset = std::make_unique<seeds_ruleset>();
 			neighborsSelector = std::make_unique<wrapping_neighbors_selector>(mooreNeighbors);
 		}
 		else
