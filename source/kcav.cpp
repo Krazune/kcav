@@ -119,6 +119,8 @@ namespace kcav
 				if (event.type == sf::Event::Closed)
 				{
 					window.close();
+
+					return EXIT_SUCCESS;
 				}
 			}
 
