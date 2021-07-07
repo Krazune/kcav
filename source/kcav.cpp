@@ -11,6 +11,7 @@
 #include "cellular_automata_engine.hpp"
 #include "cellular_automaton.hpp"
 #include "kcav.hpp"
+#include "kladiators_ruleset.hpp"
 #include "life_ruleset.hpp"
 #include "seeds_ruleset.hpp"
 #include "sfml_err_redirector.hpp"
@@ -136,6 +137,11 @@ namespace kcav
 		{
 			ruleset = std::make_unique<brians_brain_ruleset>();
 			neighborsSelector = std::make_unique<wrapping_neighbors_selector>(mooreNeighbors);
+		}
+		else if (rulesetIdentifier == "kladiators")
+		{
+			ruleset = std::make_unique<kladiators_ruleset>();
+			neighborsSelector = std::make_unique<wrapping_neighbors_selector>(vonNeumannNeighbors);
 		}
 		else
 		{
