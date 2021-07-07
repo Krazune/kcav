@@ -74,7 +74,7 @@ namespace kcav
 
 		if (millisecondsPerGeneration < 0)
 		{
-			std::cout << "invalid generation time\n";
+			print_invalid_time_error_message();
 
 			return EXIT_FAILURE;
 		}
@@ -308,5 +308,10 @@ namespace kcav
 	void kcav::print_invalid_identifier_error_message() const
 	{
 		std::cerr << "Error: invalid cellular automata identifier.\n";
+	}
+
+	void kcav::kcav::print_invalid_time_error_message() const
+	{
+		std::cerr << "Error: invalid time per generation.\n";
 	}
 }

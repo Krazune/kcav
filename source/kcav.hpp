@@ -56,6 +56,7 @@ namespace kcav
 		void print_version_message() const;
 		void print_file_load_error_message() const;
 		void print_invalid_identifier_error_message() const;
+		void print_invalid_time_error_message() const;
 	};
 }
 
