@@ -45,7 +45,7 @@ namespace kcav
 			return EXIT_FAILURE;
 		}
 
-		// Process the secondary usages before trying to convert the arguments into the respective types.
+		// Process the secondary usages before trying to use primary arguments.
 		if (process_secondary_usages())
 		{
 			return EXIT_SUCCESS;
