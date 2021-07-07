@@ -30,6 +30,8 @@ namespace kcav
 
 		std::unique_ptr<cellular_automaton> cellularAutomaton;
 
+		int millisecondsPerGeneration = 0;
+
 		public:
 		kcav();
 
@@ -44,6 +46,7 @@ namespace kcav
 		void store_options(int argc, char* argv[]);
 
 		bool setup_cellular_automaton();
+		bool setup_generation_time();
 
 		bool process_option_storage(int argc, char* argv[]);
 		bool process_secondary_usages() const;

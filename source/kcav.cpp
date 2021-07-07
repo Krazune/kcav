@@ -70,9 +70,7 @@ namespace kcav
 			return EXIT_FAILURE;
 		}
 
-		int millisecondsPerGeneration = optionsMap["time"].as<int>();
-
-		if (millisecondsPerGeneration < 0)
+		if (!setup_generation_time())
 		{
 			print_invalid_time_error_message();
 
@@ -182,6 +180,20 @@ namespace kcav
 		}
 
 		cellularAutomaton = std::make_unique<cellular_automaton>(std::move(ruleset), std::move(neighborsSelector));
+
+		return true;
+	}
+
+	bool kcav::setup_generation_time()
+	{
+		int time = optionsMap["time"].as<int>();
+
+		if (time < 0)
+		{
+			return false;
+		}
+
+		millisecondsPerGeneration = time;
 
 		return true;
 	}
