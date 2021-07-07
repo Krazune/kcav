@@ -69,14 +69,6 @@ namespace kcav
 		}
 
 		std::string rulesetIdentifier = optionsMap["ruleset"].as<std::string>();
-		int millisecondsPerGeneration = optionsMap["time"].as<int>();
-
-		if (!load_image_file())
-		{
-			print_file_load_error_message();
-
-			return EXIT_FAILURE;
-		}
 
 		std::unique_ptr<ruleset> ruleset;
 		std::unique_ptr<neighbors_selector> neighborsSelector;
@@ -93,14 +85,23 @@ namespace kcav
 			return EXIT_FAILURE;
 		}
 
+		if (!load_image_file())
+		{
+			print_file_load_error_message();
+
+			return EXIT_FAILURE;
+		}
+
+		generation = ruleset->convert_invalid_states(generation);
+
+		int millisecondsPerGeneration = optionsMap["time"].as<int>();
+
 		if (millisecondsPerGeneration < 0)
 		{
 			std::cout << "invalid generation time\n";
 
 			return EXIT_FAILURE;
 		}
-
-		generation = ruleset->convert_invalid_states(generation);
 
 		auto cellularAutomaton = std::make_unique<cellular_automaton>(std::move(ruleset), std::move(neighborsSelector));
 
