@@ -18,6 +18,7 @@ namespace kcav
 		private:
 		static std::vector<sf::Vector2<int>> mooreNeighbors;
 		static std::vector<sf::Vector2<int>> vonNeumannNeighbors;
+		static std::vector<sf::Vector2<int>> immediateNeighbors;
 
 		boost::program_options::options_description options;
 		boost::program_options::options_description hiddenOptions;
