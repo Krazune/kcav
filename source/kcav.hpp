@@ -43,7 +43,7 @@ namespace kcav
 		void setup_visible_options();
 		void setup_positional_options();
 
-		void store_options(int argc, char* argv[]);
+		void setup_options_map(int argc, char* argv[]);
 
 		bool setup_cellular_automaton();
 		bool setup_generation_time();

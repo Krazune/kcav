@@ -115,7 +115,7 @@ namespace kcav
 		positionalOptions.add("ruleset", 1).add("image-path", 1);
 	}
 
-	void kcav::store_options(int argc, char* argv[])
+	void kcav::setup_options_map(int argc, char* argv[])
 	{
 		po::parsed_options parsedOptions = po::command_line_parser(argc, argv).options(options).positional(positionalOptions).run();
 
@@ -176,7 +176,7 @@ namespace kcav
 	{
 		try
 		{
-			store_options(argc, argv);
+			setup_options_map(argc, argv);
 		}
 		catch (...)
 		{
