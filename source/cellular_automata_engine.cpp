@@ -1,4 +1,7 @@
 #include <memory>
+#include <utility>
+
+#include <SFML/Graphics.hpp>
 
 #include "cellular_automata_engine.hpp"
 #include "cellular_automaton.hpp"

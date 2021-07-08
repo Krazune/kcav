@@ -1,3 +1,7 @@
+#include <vector>
+
+#include <SFML/Graphics.hpp>
+
 #include "brians_brain_ruleset.hpp"
 
 namespace kcav

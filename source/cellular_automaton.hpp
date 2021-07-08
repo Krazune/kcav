@@ -5,8 +5,8 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "ruleset.hpp"
 #include "neighbors_selector.hpp"
+#include "ruleset.hpp"
 
 namespace kcav
 {

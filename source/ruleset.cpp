@@ -1,3 +1,5 @@
+#include <SFML/Graphics.hpp>
+
 #include "ruleset.hpp"
 
 namespace kcav

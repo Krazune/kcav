@@ -1,6 +1,7 @@
 #include <vector>
 
 #include <SFML/Graphics.hpp>
+#include <SFML/System.hpp>
 
 #include "default_color_neighbors_selector.hpp"
 

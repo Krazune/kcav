@@ -2,10 +2,13 @@
 #include <iostream>
 #include <memory>
 #include <string>
+#include <vector>
 
 #include <boost/program_options.hpp>
 
 #include <SFML/Graphics.hpp>
+#include <SFML/System.hpp>
+#include <SFML/Window.hpp>
 
 #include "brians_brain_ruleset.hpp"
 #include "cellular_automata_engine.hpp"

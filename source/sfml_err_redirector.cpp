@@ -1,3 +1,5 @@
+#include <streambuf>
+
 #include <SFML/System.hpp>
 
 #include "sfml_err_redirector.hpp"

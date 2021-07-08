@@ -4,6 +4,7 @@
 #include <vector>
 
 #include <SFML/Graphics.hpp>
+#include <SFML/System.hpp>
 
 #include "offset_neighbors_selector.hpp"
 
