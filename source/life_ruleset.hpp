@@ -1,5 +1,9 @@
-#ifndef LIFE_RULESET_HPP
-#define LIFE_RULESET_HPP
+#ifndef KCAV_LIFE_RULESET_HPP
+#define KCAV_LIFE_RULESET_HPP
+
+#include <vector>
+
+#include <SFML/Graphics.hpp>
 
 #include "ruleset.hpp"
 

@@ -1,7 +1,7 @@
-#ifndef SFML_ERR_REDIRECTOR_HPP
-#define SFML_ERR_REDIRECTOR_HPP
+#ifndef KCAV_SFML_ERR_REDIRECTOR_HPP
+#define KCAV_SFML_ERR_REDIRECTOR_HPP
 
-#include <SFML/System.hpp>
+#include <streambuf>
 
 namespace kcav
 {

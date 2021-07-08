@@ -1,5 +1,5 @@
-#ifndef KCAV_HPP
-#define KCAV_HPP
+#ifndef KCAV_KCAV_HPP
+#define KCAV_KCAV_HPP
 
 #include <memory>
 #include <vector>
@@ -26,7 +26,7 @@ namespace kcav
 
 		boost::program_options::variables_map optionsMap;
 
-		sf::Image generation;
+		sf::Image gen;
 
 		std::unique_ptr<cellular_automaton> cellularAutomaton;
 
@@ -43,7 +43,7 @@ namespace kcav
 		void setup_visible_options();
 		void setup_positional_options();
 
-		void store_options(int argc, char* argv[]);
+		void setup_options_map(int argc, char* argv[]);
 
 		bool setup_cellular_automaton();
 		bool setup_generation_time();

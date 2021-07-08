@@ -1,5 +1,9 @@
-#ifndef BRIANS_BRAIN_RULESET_HPP
-#define BRIANS_BRAIN_RULESET_HPP
+#ifndef KCAV_BRIANS_BRAIN_RULESET_HPP
+#define KCAV_BRIANS_BRAIN_RULESET_HPP
+
+#include <vector>
+
+#include <SFML/Graphics.hpp>
 
 #include "ruleset.hpp"
 

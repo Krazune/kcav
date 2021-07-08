@@ -2,13 +2,16 @@
 #include <iostream>
 #include <memory>
 #include <string>
+#include <vector>
 
 #include <boost/program_options.hpp>
 
 #include <SFML/Graphics.hpp>
+#include <SFML/System.hpp>
+#include <SFML/Window.hpp>
 
 #include "brians_brain_ruleset.hpp"
-#include "cellular_automata_engine.hpp"
+#include "engine.hpp"
 #include "cellular_automaton.hpp"
 #include "kcav.hpp"
 #include "kladiators_ruleset.hpp"
@@ -16,6 +19,8 @@
 #include "seeds_ruleset.hpp"
 #include "sfml_err_redirector.hpp"
 #include "wrapping_neighbors_selector.hpp"
+
+namespace po = boost::program_options;
 
 namespace kcav
 {
@@ -95,14 +100,14 @@ namespace kcav
 		hiddenOptions.add_options()
 			("help", "print help information")
 			("version", "print version information")
-			("ruleset", boost::program_options::value<std::string>()->required(), "cellular automaton ruleset identifier")
-			("image-path", boost::program_options::value<std::string>()->required(), "input image path");
+			("ruleset", po::value<std::string>()->required(), "cellular automaton ruleset identifier")
+			("image-path", po::value<std::string>()->required(), "input image path");
 	}
 
 	void kcav::setup_visible_options()
 	{
 		visibleOptions.add_options()
-			("time,t", boost::program_options::value<int>()->default_value(100), "amount of miliseconds between each generation");
+			("time,t", po::value<int>()->default_value(100), "amount of miliseconds between each generation");
 	}
 
 	void kcav::setup_positional_options()
@@ -110,11 +115,11 @@ namespace kcav
 		positionalOptions.add("ruleset", 1).add("image-path", 1);
 	}
 
-	void kcav::store_options(int argc, char* argv[])
+	void kcav::setup_options_map(int argc, char* argv[])
 	{
-		boost::program_options::parsed_options parsedOptions = boost::program_options::command_line_parser(argc, argv).options(options).positional(positionalOptions).run();
+		po::parsed_options parsedOptions = po::command_line_parser(argc, argv).options(options).positional(positionalOptions).run();
 
-		boost::program_options::store(parsedOptions, optionsMap);
+		po::store(parsedOptions, optionsMap);
 	}
 
 	bool kcav::setup_cellular_automaton()
@@ -171,7 +176,7 @@ namespace kcav
 	{
 		try
 		{
-			store_options(argc, argv);
+			setup_options_map(argc, argv);
 		}
 		catch (...)
 		{
@@ -206,7 +211,7 @@ namespace kcav
 	{
 		try
 		{
-			boost::program_options::notify(optionsMap);
+			po::notify(optionsMap);
 		}
 		catch (...)
 		{
@@ -222,16 +227,16 @@ namespace kcav
 	{
 		std::string imagePath = optionsMap["image-path"].as<std::string>();
 
-		return generation.loadFromFile(imagePath);
+		return gen.loadFromFile(imagePath);
 	}
 
 	void kcav::run_engine_loop()
 	{
-		cellular_automata_engine engine(std::move(cellularAutomaton), generation);
+		engine engine(std::move(cellularAutomaton), gen);
 
-		generation = engine.get_generation();
+		gen = engine.get_gen();
 
-		sf::RenderWindow window(sf::VideoMode(generation.getSize().x, generation.getSize().y), "KCAV");
+		sf::RenderWindow window(sf::VideoMode(gen.getSize().x, gen.getSize().y), "KCAV");
 		sf::Time timer = sf::milliseconds(millisecondsPerGeneration);
 		sf::Clock generationClock;
 		sf::Time previousGenerationTime;
@@ -254,10 +259,10 @@ namespace kcav
 
 			sf::Texture myTexture;
 
-			myTexture.create(generation.getSize().x, generation.getSize().y);
-			myTexture.update(generation);
+			myTexture.create(gen.getSize().x, gen.getSize().y);
+			myTexture.update(gen);
 
-			generation = engine.get_generation();
+			gen = engine.get_gen();
 
 			sf::Sprite mySprite;
 
@@ -267,7 +272,7 @@ namespace kcav
 
 			if (generationClock.getElapsedTime() - previousGenerationTime >= timer)
 			{
-				engine.update_generation();
+				engine.update_gen();
 				previousGenerationTime = generationClock.getElapsedTime();
 			}
 
@@ -281,31 +286,31 @@ namespace kcav
 		{
 			throw;
 		}
-		catch (boost::program_options::ambiguous_option&)
+		catch (po::ambiguous_option&)
 		{
 			std::cerr << "Error: ambiguous option.\n";
 		}
-		catch (boost::program_options::unknown_option&)
+		catch (po::unknown_option&)
 		{
 			std::cerr << "Error: unknown option.\n";
 		}
-		catch (boost::program_options::invalid_command_line_syntax&)
+		catch (po::invalid_command_line_syntax&)
 		{
 			std::cerr << "Error: invalid command line syntax.\n";
 		}
-		catch (boost::program_options::multiple_occurrences& error)
+		catch (po::multiple_occurrences& error)
 		{
 			std::cerr << "Error: multiple occurrences of the option " << error.get_option_name() << " are not allowed.\n";
 		}
-		catch (boost::program_options::multiple_values& error)
+		catch (po::multiple_values& error)
 		{
 			std::cerr << "Error: multiple values given to the option " << error.get_option_name() << " are not allowed.\n";
 		}
-		catch (boost::program_options::required_option& error)
+		catch (po::required_option& error)
 		{
 			std::cerr << "Error: missing required option " << error.get_option_name() << ".\n";
 		}
-		catch (boost::program_options::validation_error& error)
+		catch (po::validation_error& error)
 		{
 			std::cerr << "Error: invalid value given to the option " << error.get_option_name() << ".\n";
 		}

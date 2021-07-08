@@ -1,4 +1,5 @@
 #include <memory>
+#include <utility>
 #include <vector>
 
 #include <SFML/Graphics.hpp>
@@ -9,12 +10,16 @@
 
 namespace kcav
 {
-	cellular_automaton::cellular_automaton(std::unique_ptr<ruleset> ruleset, std::unique_ptr<neighbors_selector> neighborsSelector) : automatonRuleset(std::move(ruleset)), neighborsSelector(std::move(neighborsSelector)) { }
-
-	sf::Image cellular_automaton::get_next_generation(const sf::Image& currentGeneration)
+	cellular_automaton::cellular_automaton(std::unique_ptr<ruleset> ruleset, std::unique_ptr<neighbors_selector> neighborsSelector) :
+		automatonRuleset(std::move(ruleset)),
+		neighborsSelector(std::move(neighborsSelector))
 	{
-		unsigned int width = currentGeneration.getSize().x;
-		unsigned int height = currentGeneration.getSize().y;
+	}
+
+	sf::Image cellular_automaton::get_next_gen(const sf::Image& currentGen)
+	{
+		unsigned int width = currentGen.getSize().x;
+		unsigned int height = currentGen.getSize().y;
 
 		sf::Image nextGeneration;
 
@@ -24,8 +29,8 @@ namespace kcav
 		{
 			for (unsigned int y = 0; y < height; ++y)
 			{
-				std::vector<sf::Color> neighbors = neighborsSelector->get_neighbors(currentGeneration, x, y);
-				sf::Color selfState = currentGeneration.getPixel(x, y);
+				std::vector<sf::Color> neighbors = neighborsSelector->get_neighbors(currentGen, x, y);
+				sf::Color selfState = currentGen.getPixel(x, y);
 				sf::Color nextState = automatonRuleset->get_state(selfState, neighbors);
 
 				nextGeneration.setPixel(x, y, nextState);

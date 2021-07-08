@@ -1,9 +1,10 @@
-#ifndef WRAPPING_NEIGHBORS_SELECTOR_HPP
-#define WRAPPING_NEIGHBORS_SELECTOR_HPP
+#ifndef KCAV_WRAPPING_NEIGHBORS_SELECTOR_HPP
+#define KCAV_WRAPPING_NEIGHBORS_SELECTOR_HPP
 
 #include <vector>
 
 #include <SFML/Graphics.hpp>
+#include <SFML/System.hpp>
 
 #include "offset_neighbors_selector.hpp"
 

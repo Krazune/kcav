@@ -1,3 +1,7 @@
+#include <vector>
+
+#include <SFML/Graphics.hpp>
+
 #include "life_ruleset.hpp"
 
 namespace kcav

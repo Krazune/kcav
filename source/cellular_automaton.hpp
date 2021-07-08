@@ -1,12 +1,12 @@
-#ifndef CELLULAR_AUTOMATON_HPP
-#define CELLULAR_AUTOMATON_HPP
+#ifndef KCAV_CELLULAR_AUTOMATON_HPP
+#define KCAV_CELLULAR_AUTOMATON_HPP
 
 #include <memory>
 
 #include <SFML/Graphics.hpp>
 
-#include "ruleset.hpp"
 #include "neighbors_selector.hpp"
+#include "ruleset.hpp"
 
 namespace kcav
 {
@@ -18,7 +18,7 @@ namespace kcav
 		public:
 		cellular_automaton(std::unique_ptr<ruleset> ruleset, std::unique_ptr<neighbors_selector> neighborsSelector);
 
-		sf::Image get_next_generation(const sf::Image& currentGeneration);
+		sf::Image get_next_gen(const sf::Image& currentGen);
 
 		sf::Image convert_invalid_states(const sf::Image& original);
 	};

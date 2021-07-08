@@ -1,11 +1,14 @@
-#ifndef CELLULAR_AUTOMATA_ENGINE_TEST_HPP
-#define CELLULAR_AUTOMATA_ENGINE_TEST_HPP
+#ifndef ENGINE_TEST_HPP
+#define ENGINE_TEST_HPP
 
-#include <gtest/gtest.h>
+#include <memory>
+#include <utility>
 
 #include <SFML/Graphics.hpp>
 
-#include "../source/cellular_automata_engine.hpp"
+#include <gtest/gtest.h>
+
+#include "../source/engine.hpp"
 #include "../source/cellular_automaton.hpp"
 
 #include "mocks/neighbors_selector_mock.hpp"
@@ -39,11 +42,11 @@ TEST_F(CellularAutomatonEngineTest, GenerateAndGetGenerationTest)
 	EXPECT_CALL(*ruleset, get_state(::testing::_, ::testing::_)).WillRepeatedly(::testing::Return(sf::Color::Red));
 
 	std::unique_ptr<kcav::cellular_automaton> cellularAutomaton = std::make_unique<kcav::cellular_automaton>(std::move(ruleset), std::move(neighborsSelector));
-	kcav::cellular_automata_engine cellularAutomataEngine(std::move(cellularAutomaton), colorfulImage);
+	kcav::engine cellularAutomataEngine(std::move(cellularAutomaton), colorfulImage);
 
-	cellularAutomataEngine.update_generation();
+	cellularAutomataEngine.update_gen();
 
-	sf::Image generation = cellularAutomataEngine.get_generation();
+	sf::Image generation = cellularAutomataEngine.get_gen();
 
 	ASSERT_EQ(generation.getPixel(0, 0), sf::Color::Red);
 	ASSERT_EQ(generation.getPixel(1, 0), sf::Color::Red);

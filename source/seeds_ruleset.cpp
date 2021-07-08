@@ -1,3 +1,7 @@
+#include <memory>
+
+#include <SFML/Graphics.hpp>
+
 #include "seeds_ruleset.hpp"
 
 namespace kcav

@@ -3,10 +3,10 @@
 
 #include <vector>
 
-#include <gtest/gtest.h>
-
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
+
+#include <gtest/gtest.h>
 
 #include "../source/wrapping_neighbors_selector.hpp"
 

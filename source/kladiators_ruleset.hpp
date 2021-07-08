@@ -1,5 +1,9 @@
-#ifndef KLADIATORS_RULESET_HPP
-#define KLADIATORS_RULESET_HPP
+#ifndef KCAV_KLADIATORS_RULESET_HPP
+#define KCAV_KLADIATORS_RULESET_HPP
+
+#include <memory>
+
+#include <SFML/Graphics.hpp>
 
 #include "ruleset.hpp"
 

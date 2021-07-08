@@ -1,9 +1,10 @@
-#ifndef DEFAULT_COLOR_NEIGHBORS_SELECTOR_HPP
-#define DEFAULT_COLOR_NEIGHBORS_SELECTOR_HPP
+#ifndef KCAV_DEFAULT_COLOR_NEIGHBORS_SELECTOR_HPP
+#define KCAV_DEFAULT_COLOR_NEIGHBORS_SELECTOR_HPP
 
 #include <vector>
 
 #include <SFML/Graphics.hpp>
+#include <SFML/System.hpp>
 
 #include "offset_neighbors_selector.hpp"
 

@@ -1,5 +1,9 @@
-#ifndef SEEDS_RULESET_HPP
-#define SEEDS_RULESET_HPP
+#ifndef KCAV_SEEDS_RULESET_HPP
+#define KCAV_SEEDS_RULESET_HPP
+
+#include <vector>
+
+#include <SFML/Graphics.hpp>
 
 #include "ruleset.hpp"
 

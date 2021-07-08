@@ -1,3 +1,7 @@
+#include <vector>
+
+#include <SFML/Graphics.hpp>
+
 #include "kladiators_ruleset.hpp"
 
 namespace kcav
