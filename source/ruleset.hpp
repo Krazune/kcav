@@ -1,5 +1,5 @@
-#ifndef RULESET_HPP
-#define RULESET_HPP
+#ifndef KCAV_RULESET_HPP
+#define KCAV_RULESET_HPP
 
 #include <vector>
 

@@ -1,5 +1,5 @@
-#ifndef ENGINE_HPP
-#define ENGINE_HPP
+#ifndef KCAV_ENGINE_HPP
+#define KCAV_ENGINE_HPP
 
 #include <memory>
 

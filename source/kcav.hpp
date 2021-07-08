@@ -1,5 +1,5 @@
-#ifndef KCAV_HPP
-#define KCAV_HPP
+#ifndef KCAV_KCAV_HPP
+#define KCAV_KCAV_HPP
 
 #include <memory>
 #include <vector>
