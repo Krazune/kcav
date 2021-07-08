@@ -1,5 +1,5 @@
-#ifndef CELLULAR_AUTOMATA_ENGINE_HPP
-#define CELLULAR_AUTOMATA_ENGINE_HPP
+#ifndef ENGINE_HPP
+#define ENGINE_HPP
 
 #include <memory>
 
@@ -9,13 +9,13 @@
 
 namespace kcav
 {
-	class cellular_automata_engine
+	class engine
 	{
 		sf::Image generation;
 		std::unique_ptr<cellular_automaton> cellullarAutomaton;
 
 		public:
-		cellular_automata_engine(std::unique_ptr<cellular_automaton> cellullarAutomaton, sf::Image inputGeneration);
+		engine(std::unique_ptr<cellular_automaton> cellullarAutomaton, sf::Image inputGeneration);
 
 		void update_generation();
 

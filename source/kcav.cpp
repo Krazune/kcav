@@ -11,7 +11,7 @@
 #include <SFML/Window.hpp>
 
 #include "brians_brain_ruleset.hpp"
-#include "cellular_automata_engine.hpp"
+#include "engine.hpp"
 #include "cellular_automaton.hpp"
 #include "kcav.hpp"
 #include "kladiators_ruleset.hpp"
@@ -232,7 +232,7 @@ namespace kcav
 
 	void kcav::run_engine_loop()
 	{
-		cellular_automata_engine engine(std::move(cellularAutomaton), generation);
+		engine engine(std::move(cellularAutomaton), generation);
 
 		generation = engine.get_generation();
 
