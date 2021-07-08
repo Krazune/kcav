@@ -8,18 +8,18 @@
 
 namespace kcav
 {
-	engine::engine(std::unique_ptr<cellular_automaton> cellullarAutomaton, sf::Image inputGeneration) : cellullarAutomaton(std::move(cellullarAutomaton))
+	engine::engine(std::unique_ptr<cellular_automaton> automaton, sf::Image inputGen) : automaton(std::move(automaton))
 	{
-		generation = this->cellullarAutomaton->convert_invalid_states(inputGeneration);
+		gen = this->automaton->convert_invalid_states(inputGen);
 	}
 
-	void engine::update_generation()
+	void engine::update_gen()
 	{
-		generation = cellullarAutomaton->get_next_generation(generation);
+		gen = automaton->get_next_generation(gen);
 	}
 
-	sf::Image engine::get_generation() const
+	sf::Image engine::get_gen() const
 	{
-		return generation;
+		return gen;
 	}
 }

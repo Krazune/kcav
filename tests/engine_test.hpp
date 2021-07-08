@@ -44,9 +44,9 @@ TEST_F(CellularAutomatonEngineTest, GenerateAndGetGenerationTest)
 	std::unique_ptr<kcav::cellular_automaton> cellularAutomaton = std::make_unique<kcav::cellular_automaton>(std::move(ruleset), std::move(neighborsSelector));
 	kcav::engine cellularAutomataEngine(std::move(cellularAutomaton), colorfulImage);
 
-	cellularAutomataEngine.update_generation();
+	cellularAutomataEngine.update_gen();
 
-	sf::Image generation = cellularAutomataEngine.get_generation();
+	sf::Image generation = cellularAutomataEngine.get_gen();
 
 	ASSERT_EQ(generation.getPixel(0, 0), sf::Color::Red);
 	ASSERT_EQ(generation.getPixel(1, 0), sf::Color::Red);

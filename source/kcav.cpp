@@ -234,7 +234,7 @@ namespace kcav
 	{
 		engine engine(std::move(cellularAutomaton), generation);
 
-		generation = engine.get_generation();
+		generation = engine.get_gen();
 
 		sf::RenderWindow window(sf::VideoMode(generation.getSize().x, generation.getSize().y), "KCAV");
 		sf::Time timer = sf::milliseconds(millisecondsPerGeneration);
@@ -262,7 +262,7 @@ namespace kcav
 			myTexture.create(generation.getSize().x, generation.getSize().y);
 			myTexture.update(generation);
 
-			generation = engine.get_generation();
+			generation = engine.get_gen();
 
 			sf::Sprite mySprite;
 
@@ -272,7 +272,7 @@ namespace kcav
 
 			if (generationClock.getElapsedTime() - previousGenerationTime >= timer)
 			{
-				engine.update_generation();
+				engine.update_gen();
 				previousGenerationTime = generationClock.getElapsedTime();
 			}
 

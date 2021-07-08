@@ -11,15 +11,15 @@ namespace kcav
 {
 	class engine
 	{
-		sf::Image generation;
-		std::unique_ptr<cellular_automaton> cellullarAutomaton;
+		sf::Image gen;
+		std::unique_ptr<cellular_automaton> automaton;
 
 		public:
-		engine(std::unique_ptr<cellular_automaton> cellullarAutomaton, sf::Image inputGeneration);
+		engine(std::unique_ptr<cellular_automaton> automaton, sf::Image inputGen);
 
-		void update_generation();
+		void update_gen();
 
-		sf::Image get_generation() const;
+		sf::Image get_gen() const;
 	};
 }
 
