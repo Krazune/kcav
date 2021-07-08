@@ -26,7 +26,7 @@ namespace kcav
 
 		boost::program_options::variables_map optionsMap;
 
-		sf::Image generation;
+		sf::Image gen;
 
 		std::unique_ptr<cellular_automaton> cellularAutomaton;
 

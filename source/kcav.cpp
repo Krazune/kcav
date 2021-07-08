@@ -227,16 +227,16 @@ namespace kcav
 	{
 		std::string imagePath = optionsMap["image-path"].as<std::string>();
 
-		return generation.loadFromFile(imagePath);
+		return gen.loadFromFile(imagePath);
 	}
 
 	void kcav::run_engine_loop()
 	{
-		engine engine(std::move(cellularAutomaton), generation);
+		engine engine(std::move(cellularAutomaton), gen);
 
-		generation = engine.get_gen();
+		gen = engine.get_gen();
 
-		sf::RenderWindow window(sf::VideoMode(generation.getSize().x, generation.getSize().y), "KCAV");
+		sf::RenderWindow window(sf::VideoMode(gen.getSize().x, gen.getSize().y), "KCAV");
 		sf::Time timer = sf::milliseconds(millisecondsPerGeneration);
 		sf::Clock generationClock;
 		sf::Time previousGenerationTime;
@@ -259,10 +259,10 @@ namespace kcav
 
 			sf::Texture myTexture;
 
-			myTexture.create(generation.getSize().x, generation.getSize().y);
-			myTexture.update(generation);
+			myTexture.create(gen.getSize().x, gen.getSize().y);
+			myTexture.update(gen);
 
-			generation = engine.get_gen();
+			gen = engine.get_gen();
 
 			sf::Sprite mySprite;
 
