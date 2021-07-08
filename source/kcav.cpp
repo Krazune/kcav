@@ -11,8 +11,8 @@
 #include <SFML/Window.hpp>
 
 #include "brians_brain_ruleset.hpp"
-#include "engine.hpp"
 #include "cellular_automaton.hpp"
+#include "engine.hpp"
 #include "kcav.hpp"
 #include "kladiators_ruleset.hpp"
 #include "lfod_ruleset.hpp"
