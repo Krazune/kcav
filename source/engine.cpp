@@ -16,7 +16,7 @@ namespace kcav
 
 	void engine::update_gen()
 	{
-		gen = automaton->get_next_generation(gen);
+		gen = automaton->get_next_gen(gen);
 	}
 
 	sf::Image engine::get_gen() const

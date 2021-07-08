@@ -42,7 +42,7 @@ TEST_F(CellularAutomatonTest, GetNextGenerationTest)
 
 	kcav::cellular_automaton cellularAutomaton(std::move(rulesetMock), std::move(neighborsSelectorMock));
 
-	const sf::Image nextGeneration = cellularAutomaton.get_next_generation(colorfulImage);
+	const sf::Image nextGeneration = cellularAutomaton.get_next_gen(colorfulImage);
 
 	ASSERT_EQ(nextGeneration.getPixel(0, 0), sf::Color::Red);
 	ASSERT_EQ(nextGeneration.getPixel(1, 0), sf::Color::Red);

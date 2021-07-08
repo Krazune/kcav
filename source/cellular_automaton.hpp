@@ -18,7 +18,7 @@ namespace kcav
 		public:
 		cellular_automaton(std::unique_ptr<ruleset> ruleset, std::unique_ptr<neighbors_selector> neighborsSelector);
 
-		sf::Image get_next_generation(const sf::Image& currentGeneration);
+		sf::Image get_next_gen(const sf::Image& currentGen);
 
 		sf::Image convert_invalid_states(const sf::Image& original);
 	};
