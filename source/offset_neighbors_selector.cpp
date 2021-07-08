@@ -13,7 +13,7 @@ namespace kcav
 	{
 	}
 
-	const std::vector<sf::Vector2<int> > offset_neighbors_selector::get_offsets() const
+	const std::vector<sf::Vector2<int>> offset_neighbors_selector::get_offsets() const
 	{
 		return neighborOffsets;
 	}
