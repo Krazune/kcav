@@ -7,7 +7,10 @@
 
 namespace kcav
 {
-	wrapping_neighbors_selector::wrapping_neighbors_selector(const std::vector<sf::Vector2<int>> neighborOffsets) : offset_neighbors_selector(neighborOffsets) { }
+	wrapping_neighbors_selector::wrapping_neighbors_selector(const std::vector<sf::Vector2<int>> neighborOffsets) :
+		offset_neighbors_selector(neighborOffsets)
+	{
+	}
 
 	std::vector<sf::Color> wrapping_neighbors_selector::get_neighbors(const sf::Image &image, unsigned int x, unsigned int y) const
 	{

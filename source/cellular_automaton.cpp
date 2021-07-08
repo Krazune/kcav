@@ -10,7 +10,11 @@
 
 namespace kcav
 {
-	cellular_automaton::cellular_automaton(std::unique_ptr<ruleset> ruleset, std::unique_ptr<neighbors_selector> neighborsSelector) : automatonRuleset(std::move(ruleset)), neighborsSelector(std::move(neighborsSelector)) { }
+	cellular_automaton::cellular_automaton(std::unique_ptr<ruleset> ruleset, std::unique_ptr<neighbors_selector> neighborsSelector) :
+		automatonRuleset(std::move(ruleset)),
+		neighborsSelector(std::move(neighborsSelector))
+	{
+	}
 
 	sf::Image cellular_automaton::get_next_generation(const sf::Image& currentGeneration)
 	{

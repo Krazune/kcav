@@ -8,7 +8,8 @@
 
 namespace kcav
 {
-	engine::engine(std::unique_ptr<cellular_automaton> automaton, sf::Image inputGen) : automaton(std::move(automaton))
+	engine::engine(std::unique_ptr<cellular_automaton> automaton, sf::Image inputGen) :
+		automaton(std::move(automaton))
 	{
 		gen = this->automaton->convert_invalid_states(inputGen);
 	}
