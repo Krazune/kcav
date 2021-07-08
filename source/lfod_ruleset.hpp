@@ -1,6 +1,10 @@
 #ifndef KCAV_LFOD_RULESET_HPP
 #define KCAV_LFOD_RULESET_HPP
 
+#include <vector>
+
+#include <SFML/Graphics.hpp>
+
 #include "ruleset.hpp"
 
 namespace kcav
