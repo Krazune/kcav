@@ -3,9 +3,9 @@
 
 #include <vector>
 
-#include <gtest/gtest.h>
-
 #include <SFML/Graphics.hpp>
+
+#include <gtest/gtest.h>
 
 #include "../source/life_ruleset.hpp"
 

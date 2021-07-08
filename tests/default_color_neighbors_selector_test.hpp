@@ -3,10 +3,10 @@
 
 #include <vector>
 
-#include <gtest/gtest.h>
-
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
+
+#include <gtest/gtest.h>
 
 #include "../source/default_color_neighbors_selector.hpp"
 

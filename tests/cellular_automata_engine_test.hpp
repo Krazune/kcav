@@ -1,9 +1,12 @@
 #ifndef CELLULAR_AUTOMATA_ENGINE_TEST_HPP
 #define CELLULAR_AUTOMATA_ENGINE_TEST_HPP
 
-#include <gtest/gtest.h>
+#include <memory>
+#include <utility>
 
 #include <SFML/Graphics.hpp>
+
+#include <gtest/gtest.h>
 
 #include "../source/cellular_automata_engine.hpp"
 #include "../source/cellular_automaton.hpp"

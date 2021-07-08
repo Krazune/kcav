@@ -2,6 +2,9 @@
 #define CELLULAR_AUTOMATON_TEST_HPP
 
 #include <memory>
+#include <utility>
+
+#include <SFML/Graphics.hpp>
 
 #include <gtest/gtest.h>
 
