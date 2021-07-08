@@ -17,6 +17,7 @@
 #include "kladiators_ruleset.hpp"
 #include "lfod_ruleset.hpp"
 #include "life_ruleset.hpp"
+#include "pilots_ruleset.hpp"
 #include "seeds_ruleset.hpp"
 #include "sfml_err_redirector.hpp"
 #include "wrapping_neighbors_selector.hpp"
@@ -34,6 +35,11 @@ namespace kcav
 		{
 			{0, -1}, {1, 0}, {0, 1}, {-1, 0},
 			{0, -2}, {2, 0}, {0, 2}, {-2, 0}
+		});
+
+	std::vector<sf::Vector2<int>> kcav::immediateNeighbors(
+		{
+			{0, -1}, {1, 0}, {0, 1}, {-1, 0}
 		});
 
 	kcav::kcav() : options("Options"), hiddenOptions("Hidden Options"), visibleOptions("Options")
@@ -153,6 +159,11 @@ namespace kcav
 		{
 			ruleset = std::make_unique<lfod_ruleset>();
 			neighborsSelector = std::make_unique<wrapping_neighbors_selector>(mooreNeighbors);
+		}
+		else if (rulesetIdentifier == "pilots")
+		{
+			ruleset = std::make_unique<pilots_ruleset>();
+			neighborsSelector = std::make_unique<wrapping_neighbors_selector>(immediateNeighbors);
 		}
 		else
 		{
