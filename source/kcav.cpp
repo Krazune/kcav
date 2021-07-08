@@ -350,7 +350,7 @@ namespace kcav
 
 	void kcav::print_version_message() const
 	{
-		std::cout << "KCAV\nVersion: 0.0.0\n";
+		std::cout << "KCAV\nVersion: 2021.07.1\n";
 	}
 
 	void kcav::print_file_load_error_message() const
