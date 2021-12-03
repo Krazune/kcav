@@ -1,5 +1,5 @@
 # KCAV
-Krazune's Cellular Automata Viewer is a viewer for a collection of popular, and custom, 2d cellular automata that uses images as input.
+Krazune's Cellular Automata Viewer is a viewer for a collection of 2d cellular automata that uses images as input.
 
 ## Version
 Current version: **2021.07.1**
@@ -38,4 +38,4 @@ This project uses [Boost](https://www.boost.org/) 1.75, [SFML](https://www.sfml-
 ## Notes
 The performance of this program is not good.
 
-This generator was created for educational purposes only.
+This generator was created for entertainment, and educational purposes.
