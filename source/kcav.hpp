@@ -1,11 +1,3 @@
-#ifndef KCAV_KCAV_HPP
-#define KCAV_KCAV_HPP
-
-#include <memory>
-#include <vector>
-
-#include <boost/program_options.hpp>
-
 /*
 	MIT License
 
@@ -29,6 +21,14 @@
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 */
+#ifndef KCAV_KCAV_HPP
+#define KCAV_KCAV_HPP
+
+#include <memory>
+#include <vector>
+
+#include <boost/program_options.hpp>
+
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
 
