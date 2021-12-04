@@ -55,6 +55,7 @@ namespace kcav
 		std::unique_ptr<cellular_automaton> cellularAutomaton;
 
 		int millisecondsPerGeneration = 0;
+		int firstFrameMilliseconds = 0;
 
 		public:
 		kcav();
@@ -71,6 +72,7 @@ namespace kcav
 
 		bool setup_cellular_automaton();
 		bool setup_generation_time();
+		bool setup_first_frame_time();
 
 		bool process_option_storage(int argc, char* argv[]);
 		bool process_secondary_usages() const;
@@ -86,6 +88,7 @@ namespace kcav
 		void print_file_load_error_message() const;
 		void print_invalid_identifier_error_message() const;
 		void print_invalid_time_error_message() const;
+		void print_invalid_first_frame_time_error_message() const;
 	};
 }
 
