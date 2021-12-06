@@ -118,6 +118,13 @@ namespace kcav
 			return EXIT_FAILURE;
 		}
 
+		if (!setup_scale())
+		{
+			print_invalid_scale_error_message();
+
+			return EXIT_FAILURE;
+		}
+
 		run_engine_loop();
 
 		return EXIT_SUCCESS;
@@ -145,7 +152,8 @@ namespace kcav
 	{
 		visibleOptions.add_options()
 			("time,t", po::value<int>()->default_value(100), "amount of miliseconds between each generation")
-			("first-frame-time", po::value<int>()->default_value(1000), "amount of miliseconds for the first frame");
+			("first-frame-time", po::value<int>()->default_value(1000), "amount of miliseconds for the first frame")
+			("scale,s", po::value<float>()->default_value(1), "window scale");
 	}
 
 	void kcav::setup_positional_options()
@@ -234,6 +242,20 @@ namespace kcav
 		return true;
 	}
 
+	bool kcav::setup_scale()
+	{
+		int scale = optionsMap["scale"].as<float>();
+
+		if (scale < 1)
+		{
+			return false;
+		}
+
+		this->scale = scale;
+
+		return true;
+	}
+
 	bool kcav::process_option_storage(int argc, char* argv[])
 	{
 		try
@@ -302,6 +324,8 @@ namespace kcav
 		sf::Time timer = sf::milliseconds(millisecondsPerGeneration);
 		sf::Clock generationClock;
 		sf::Time previousGenerationTime = sf::milliseconds(firstFrameMilliseconds);
+
+		window.setSize(sf::Vector2u(gen.getSize().x * scale, gen.getSize().y * scale));
 
 		while (window.isOpen())
 		{
@@ -416,5 +440,10 @@ namespace kcav
 	void kcav::print_invalid_first_frame_time_error_message() const
 	{
 		std::cerr << "Error: invalid first frame time.\n";
+	}
+
+	void kcav::print_invalid_scale_error_message() const
+	{
+		std::cerr << "Error: invalid scale.\n";
 	}
 }

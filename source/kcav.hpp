@@ -57,6 +57,8 @@ namespace kcav
 		int millisecondsPerGeneration = 0;
 		int firstFrameMilliseconds = 0;
 
+		float scale = 0;
+
 		public:
 		kcav();
 
@@ -73,6 +75,7 @@ namespace kcav
 		bool setup_cellular_automaton();
 		bool setup_generation_time();
 		bool setup_first_frame_time();
+		bool setup_scale();
 
 		bool process_option_storage(int argc, char* argv[]);
 		bool process_secondary_usages() const;
@@ -89,6 +92,7 @@ namespace kcav
 		void print_invalid_identifier_error_message() const;
 		void print_invalid_time_error_message() const;
 		void print_invalid_first_frame_time_error_message() const;
+		void print_invalid_scale_error_message() const;
 	};
 }
 
