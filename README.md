@@ -135,7 +135,11 @@ Created by Krazune.
 
 ### Options
 
-```--time <time, in milseconds, per generation frame>```
+```--time <milseconds per frame>```
+
+```--scale <initial scale of the window, must be above 1>```
+
+```--first-frame-time <milseconds for the first frame>```
 
 ## Dependencies
 This project uses [Boost](https://www.boost.org/) 1.75, [SFML](https://www.sfml-dev.org/index.php) 2.5.1, and [Google Test](https://github.com/google/googletest) 1.10.x, earlier versions might be compatible.
