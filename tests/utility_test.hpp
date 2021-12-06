@@ -1,11 +1,43 @@
 #ifndef KCAV_UTILITY_TEST_HPP
 #define KCAV_UTILITY_TEST_HPP
 
+#include <vector>
+
 #include <SFML/Graphics.hpp>
 
 #include <gtest/gtest.h>
 
 #include "../source/utility.hpp"
+
+TEST(UtilityTest, ClosestRgbColorTest)
+{
+	std::vector<sf::Color> colors;
+
+	colors.push_back(sf::Color::Red);
+	colors.push_back(sf::Color::Green);
+	colors.push_back(sf::Color::Blue);
+
+	EXPECT_EQ(kcav::get_closest_color(sf::Color::Red, colors), sf::Color::Red);
+	EXPECT_EQ(kcav::get_closest_color(sf::Color::Green, colors), sf::Color::Green);
+	EXPECT_EQ(kcav::get_closest_color(sf::Color::Blue, colors), sf::Color::Blue);
+
+	EXPECT_EQ(kcav::get_closest_color(sf::Color(100, 100, 100), colors), sf::Color::Blue);
+}
+
+TEST(UtilityTest, ClosestBlackWhiteColorTest)
+{
+	std::vector<sf::Color> colors;
+
+	colors.push_back(sf::Color::Black);
+	colors.push_back(sf::Color::White);
+
+	EXPECT_EQ(kcav::get_closest_color(sf::Color::Black, colors), sf::Color::Black);
+	EXPECT_EQ(kcav::get_closest_color(sf::Color::White, colors), sf::Color::White);
+
+	EXPECT_EQ(kcav::get_closest_color(sf::Color::Red, colors), sf::Color::Black);
+	EXPECT_EQ(kcav::get_closest_color(sf::Color::Green, colors), sf::Color::Black);
+	EXPECT_EQ(kcav::get_closest_color(sf::Color::Yellow, colors), sf::Color::White);
+}
 
 TEST(UtilityTest, ColorDifferenceTest)
 {

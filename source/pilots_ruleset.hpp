@@ -34,6 +34,16 @@ namespace kcav
 {
 	class pilots_ruleset : public ruleset
 	{
+		private:
+		const std::vector<sf::Color> validColors {
+			sf::Color::White,
+			sf::Color::Black,
+			sf::Color::Red,
+			sf::Color::Green,
+			sf::Color::Blue,
+			sf::Color::Yellow
+		};
+
 		public:
 		sf::Color get_state(sf::Color selfState, std::vector<sf::Color> neighbors) override;
 		bool has_invalid_states(const sf::Image& image) override;
