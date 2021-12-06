@@ -24,10 +24,14 @@
 #ifndef KCAV_UTILITY_HPP
 #define KCAV_UTILITY_HPP
 
+#include <vector>
+
 #include <SFML/Graphics.hpp>
 
 namespace kcav
 {
+	sf::Color get_closest_color(sf::Color color, std::vector<sf::Color> colors);
+
 	int get_color_difference(sf::Color colorA, sf::Color colorB);
 }
 

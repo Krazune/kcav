@@ -22,6 +22,8 @@
 	SOFTWARE.
 */
 #include <cmath>
+#include <map>
+#include <stdexcept>
 
 #include <SFML/Graphics.hpp>
 
@@ -29,6 +31,23 @@
 
 namespace kcav
 {
+	sf::Color get_closest_color(sf::Color color, std::vector<sf::Color> colors)
+	{
+		if (colors.empty())
+		{
+			throw std::invalid_argument("colors vector is empty");
+		}
+
+		std::map<int, sf::Color> differences;
+
+		for (int i = 0; i < colors.size(); ++i)
+		{
+			differences[get_color_difference(color, colors[i])] = colors[i];
+		}
+
+		return differences.begin()->second;
+	}
+
 	int get_color_difference(sf::Color colorA, sf::Color colorB)
 	{
 		int redDifference = pow(colorA.r - colorB.r, 2);
