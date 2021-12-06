@@ -21,11 +21,13 @@
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 */
+#include <map>
 #include <vector>
 
 #include <SFML/Graphics.hpp>
 
 #include "pilots_ruleset.hpp"
+#include "utility.hpp"
 
 namespace kcav
 {
@@ -133,34 +135,16 @@ namespace kcav
 			for (unsigned int y = 0; y < height; ++y)
 			{
 				sf::Color state = original.getPixel(x, y);
+				std::map<int, sf::Color> differences;
 
-				if (state == sf::Color::Black)
-				{
-					continue;
-				}
+				differences[get_color_difference(state, sf::Color::Red)] = sf::Color::Red;
+				differences[get_color_difference(state, sf::Color::Green)] = sf::Color::Green;
+				differences[get_color_difference(state, sf::Color::Blue)] = sf::Color::Blue;
+				differences[get_color_difference(state, sf::Color::Yellow)] = sf::Color::Yellow;
+				differences[get_color_difference(state, sf::Color::Black)] = sf::Color::Black;
+				differences[get_color_difference(state, sf::Color::White)] = sf::Color::White;
 
-				if (state.r > state.g && state.r > state.b && state.r > 127)
-				{
-					validImage.setPixel(x, y, sf::Color::Red);
-
-					continue;
-				}
-
-				if (state.g > state.r && state.g > state.b && state.g > 127)
-				{
-					validImage.setPixel(x, y, sf::Color::Green);
-
-					continue;
-				}
-
-				if (state.b > state.r && state.b > state.g && state.b > 127)
-				{
-					validImage.setPixel(x, y, sf::Color::Blue);
-
-					continue;
-				}
-
-				validImage.setPixel(x, y, sf::Color::White);
+				validImage.setPixel(x, y, differences.begin()->second);
 			}
 		}
 
