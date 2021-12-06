@@ -134,17 +134,7 @@ namespace kcav
 		{
 			for (unsigned int y = 0; y < height; ++y)
 			{
-				sf::Color state = original.getPixel(x, y);
-				std::map<int, sf::Color> differences;
-
-				differences[get_color_difference(state, sf::Color::Red)] = sf::Color::Red;
-				differences[get_color_difference(state, sf::Color::Green)] = sf::Color::Green;
-				differences[get_color_difference(state, sf::Color::Blue)] = sf::Color::Blue;
-				differences[get_color_difference(state, sf::Color::Yellow)] = sf::Color::Yellow;
-				differences[get_color_difference(state, sf::Color::Black)] = sf::Color::Black;
-				differences[get_color_difference(state, sf::Color::White)] = sf::Color::White;
-
-				validImage.setPixel(x, y, differences.begin()->second);
+				validImage.setPixel(x, y, get_closest_color(original.getPixel(x, y), validColors));
 			}
 		}
 
