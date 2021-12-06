@@ -10,6 +10,8 @@ The version format is "*\<year\>.\<zero padded month\>.\<revision number\>*".
 
 ### Game of Life
 
+![Game of Life demo](resources/life.gif)
+
 **KCAV identifier:** *life*
 
 **Neighborhood type:** Moore neighborhood
@@ -30,6 +32,8 @@ One of the most popular cellular automata.
 
 ### Seeds
 
+![Seeds demo](resources/seeds.gif)
+
 **KCAV identifier:** *seeds*
 
 **Neighborhood type:** Moore neighborhood
@@ -45,6 +49,8 @@ Black and white pixels are kept as is. Other colors are converted into the close
 ---
 
 ### Brian's Brain
+
+![Brian's Brain demo](resources/brain.gif)
 
 **KCAV identifier:** *brians-brain*
 
@@ -62,6 +68,8 @@ Black, white and 100% blue pixels are kept as is. Other colors are converted int
 
 ### Live Free or Die
 
+![Live Free or Die demo](resources/lfod.gif)
+
 **KCAV identifier:** *lfod*
 
 **Neighborhood type:** Moore neighborhood
@@ -77,6 +85,8 @@ Black, and white pixels are kept as is. Other colors are converted into the clos
 ---
 
 ### Kladiators
+
+![Kladiators demo](resources/kladiators.gif)
 
 **KCAV identifier:** *kladiators*
 
@@ -97,6 +107,8 @@ Created by Krazune.
 ---
 
 ### Pilots
+
+![Pilots demo](resources/pilots.gif)
 
 **KCAV identifier:** *pilots*
 
