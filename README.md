@@ -2,7 +2,7 @@
 Krazune's Cellular Automata Viewer is a viewer for a collection of 2d cellular automata, in which images are used as input.
 
 ## Version
-Current version: **2021.07.1**
+Current version: **2021.12.1**
 
 The version format is "*\<year\>.\<zero padded month\>.\<revision number\>*".
 
