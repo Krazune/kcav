@@ -21,11 +21,13 @@
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 */
+#include <map>
 #include <vector>
 
 #include <SFML/Graphics.hpp>
 
 #include "pilots_ruleset.hpp"
+#include "utility.hpp"
 
 namespace kcav
 {
@@ -39,7 +41,7 @@ namespace kcav
 		bool redComing = neighbors[3] == sf::Color::Red;
 		bool greenComing = neighbors[1] == sf::Color::Green;
 		bool blueComing = neighbors[0] == sf::Color::Blue;
-		bool yellownComing = neighbors[2] == sf::Color::Yellow;
+		bool yellowComing = neighbors[2] == sf::Color::Yellow;
 
 		int comingCount = 0;
 
@@ -58,7 +60,7 @@ namespace kcav
 			++comingCount;
 		}
 
-		if (yellownComing)
+		if (yellowComing)
 		{
 			++comingCount;
 		}
@@ -80,7 +82,7 @@ namespace kcav
 				return sf::Color::Blue;
 			}
 
-			if (yellownComing)
+			if (yellowComing)
 			{
 				return sf::Color::Yellow;
 			}
@@ -132,35 +134,7 @@ namespace kcav
 		{
 			for (unsigned int y = 0; y < height; ++y)
 			{
-				sf::Color state = original.getPixel(x, y);
-
-				if (state == sf::Color::Black)
-				{
-					continue;
-				}
-
-				if (state.r > state.g && state.r > state.b && state.r > 127)
-				{
-					validImage.setPixel(x, y, sf::Color::Red);
-
-					continue;
-				}
-
-				if (state.g > state.r && state.g > state.b && state.g > 127)
-				{
-					validImage.setPixel(x, y, sf::Color::Green);
-
-					continue;
-				}
-
-				if (state.b > state.r && state.b > state.g && state.b > 127)
-				{
-					validImage.setPixel(x, y, sf::Color::Blue);
-
-					continue;
-				}
-
-				validImage.setPixel(x, y, sf::Color::White);
+				validImage.setPixel(x, y, get_closest_color(original.getPixel(x, y), validColors));
 			}
 		}
 

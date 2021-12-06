@@ -21,34 +21,39 @@
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 */
-#ifndef PILOTS_RULESET_HPP
-#define PILOTS_RULESET_HPP
-
-#include <vector>
+#include <cmath>
+#include <map>
+#include <stdexcept>
 
 #include <SFML/Graphics.hpp>
 
-#include "ruleset.hpp"
+#include "utility.hpp"
 
 namespace kcav
 {
-	class pilots_ruleset : public ruleset
+	sf::Color get_closest_color(sf::Color color, std::vector<sf::Color> colors)
 	{
-		private:
-		const std::vector<sf::Color> validColors {
-			sf::Color::White,
-			sf::Color::Black,
-			sf::Color::Red,
-			sf::Color::Green,
-			sf::Color::Blue,
-			sf::Color::Yellow
-		};
+		if (colors.empty())
+		{
+			throw std::invalid_argument("colors vector is empty");
+		}
 
-		public:
-		sf::Color get_state(sf::Color selfState, std::vector<sf::Color> neighbors) override;
-		bool has_invalid_states(const sf::Image& image) override;
-		sf::Image convert_invalid_states(const sf::Image& original) override;
-	};
+		std::map<int, sf::Color> differences;
+
+		for (int i = 0; i < colors.size(); ++i)
+		{
+			differences[get_color_difference(color, colors[i])] = colors[i];
+		}
+
+		return differences.begin()->second;
+	}
+
+	int get_color_difference(sf::Color colorA, sf::Color colorB)
+	{
+		int redDifference = pow(colorA.r - colorB.r, 2);
+		int greenDifference = pow(colorA.g - colorB.g, 2);
+		int blueDifference = pow(colorA.b - colorB.b, 2);
+
+		return redDifference + greenDifference + blueDifference;
+	}
 }
-
-#endif

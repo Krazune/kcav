@@ -1,11 +1,3 @@
-#ifndef KCAV_KCAV_HPP
-#define KCAV_KCAV_HPP
-
-#include <memory>
-#include <vector>
-
-#include <boost/program_options.hpp>
-
 /*
 	MIT License
 
@@ -29,6 +21,14 @@
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 */
+#ifndef KCAV_KCAV_HPP
+#define KCAV_KCAV_HPP
+
+#include <memory>
+#include <vector>
+
+#include <boost/program_options.hpp>
+
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
 
@@ -55,6 +55,9 @@ namespace kcav
 		std::unique_ptr<cellular_automaton> cellularAutomaton;
 
 		int millisecondsPerGeneration = 0;
+		int firstFrameMilliseconds = 0;
+
+		float scale = 0;
 
 		public:
 		kcav();
@@ -71,6 +74,8 @@ namespace kcav
 
 		bool setup_cellular_automaton();
 		bool setup_generation_time();
+		bool setup_first_frame_time();
+		bool setup_scale();
 
 		bool process_option_storage(int argc, char* argv[]);
 		bool process_secondary_usages() const;
@@ -86,6 +91,8 @@ namespace kcav
 		void print_file_load_error_message() const;
 		void print_invalid_identifier_error_message() const;
 		void print_invalid_time_error_message() const;
+		void print_invalid_first_frame_time_error_message() const;
+		void print_invalid_scale_error_message() const;
 	};
 }
 

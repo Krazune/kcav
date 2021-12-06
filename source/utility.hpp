@@ -21,34 +21,18 @@
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 */
-#ifndef PILOTS_RULESET_HPP
-#define PILOTS_RULESET_HPP
+#ifndef KCAV_UTILITY_HPP
+#define KCAV_UTILITY_HPP
 
 #include <vector>
 
 #include <SFML/Graphics.hpp>
 
-#include "ruleset.hpp"
-
 namespace kcav
 {
-	class pilots_ruleset : public ruleset
-	{
-		private:
-		const std::vector<sf::Color> validColors {
-			sf::Color::White,
-			sf::Color::Black,
-			sf::Color::Red,
-			sf::Color::Green,
-			sf::Color::Blue,
-			sf::Color::Yellow
-		};
+	sf::Color get_closest_color(sf::Color color, std::vector<sf::Color> colors);
 
-		public:
-		sf::Color get_state(sf::Color selfState, std::vector<sf::Color> neighbors) override;
-		bool has_invalid_states(const sf::Image& image) override;
-		sf::Image convert_invalid_states(const sf::Image& original) override;
-	};
+	int get_color_difference(sf::Color colorA, sf::Color colorB);
 }
 
 #endif
