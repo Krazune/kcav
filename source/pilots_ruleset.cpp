@@ -41,7 +41,7 @@ namespace kcav
 		bool redComing = neighbors[3] == sf::Color::Red;
 		bool greenComing = neighbors[1] == sf::Color::Green;
 		bool blueComing = neighbors[0] == sf::Color::Blue;
-		bool yellownComing = neighbors[2] == sf::Color::Yellow;
+		bool yellowComing = neighbors[2] == sf::Color::Yellow;
 
 		int comingCount = 0;
 
@@ -60,7 +60,7 @@ namespace kcav
 			++comingCount;
 		}
 
-		if (yellownComing)
+		if (yellowComing)
 		{
 			++comingCount;
 		}
@@ -82,7 +82,7 @@ namespace kcav
 				return sf::Color::Blue;
 			}
 
-			if (yellownComing)
+			if (yellowComing)
 			{
 				return sf::Color::Yellow;
 			}
