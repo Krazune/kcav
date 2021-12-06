@@ -2,13 +2,15 @@
 Krazune's Cellular Automata Viewer is a viewer for a collection of 2d cellular automata, in which images are used as input.
 
 ## Version
-Current version: **2021.07.1**
+Current version: **2021.12.1**
 
 The version format is "*\<year\>.\<zero padded month\>.\<revision number\>*".
 
 ## Cellular Automata
 
 ### Game of Life
+
+![Game of Life demo](resources/life.gif)
 
 **KCAV identifier:** *life*
 
@@ -30,6 +32,8 @@ One of the most popular cellular automata.
 
 ### Seeds
 
+![Seeds demo](resources/seeds.gif)
+
 **KCAV identifier:** *seeds*
 
 **Neighborhood type:** Moore neighborhood
@@ -45,6 +49,8 @@ Black and white pixels are kept as is. Other colors are converted into the close
 ---
 
 ### Brian's Brain
+
+![Brian's Brain demo](resources/brain.gif)
 
 **KCAV identifier:** *brians-brain*
 
@@ -62,6 +68,8 @@ Black, white and 100% blue pixels are kept as is. Other colors are converted int
 
 ### Live Free or Die
 
+![Live Free or Die demo](resources/lfod.gif)
+
 **KCAV identifier:** *lfod*
 
 **Neighborhood type:** Moore neighborhood
@@ -77,6 +85,8 @@ Black, and white pixels are kept as is. Other colors are converted into the clos
 ---
 
 ### Kladiators
+
+![Kladiators demo](resources/kladiators.gif)
 
 **KCAV identifier:** *kladiators*
 
@@ -97,6 +107,8 @@ Created by Krazune.
 ---
 
 ### Pilots
+
+![Pilots demo](resources/pilots.gif)
 
 **KCAV identifier:** *pilots*
 
@@ -123,7 +135,11 @@ Created by Krazune.
 
 ### Options
 
-```--time <time, in milseconds, per generation frame>```
+```--time <milseconds per frame>```
+
+```--scale <initial scale of the window, must be above 1>```
+
+```--first-frame-time <milseconds for the first frame>```
 
 ## Dependencies
 This project uses [Boost](https://www.boost.org/) 1.75, [SFML](https://www.sfml-dev.org/index.php) 2.5.1, and [Google Test](https://github.com/google/googletest) 1.10.x, earlier versions might be compatible.
